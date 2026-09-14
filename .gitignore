@@ -1,5 +1,16 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Production & Build Outputs
+dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,35 +18,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Diagnostic / Build outputs
-dist
-dist-ssr
-build
-*.tsbuildinfo
-
-# Dependencies
-node_modules
-.pnp
-.pnp.js
-
-# Environment variables
+# Environment Variables & Secrets
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# OS generated files
+# System, OS & Cache Files
 .DS_Store
 .DS_Store?
 ._*
@@ -43,9 +34,17 @@ node_modules
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Temporary / Cache files
 .eslintcache
-.cache
-.system_generated
+.cache/
+.vite/
+.system_generated/
 
+# Editor & IDE files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
