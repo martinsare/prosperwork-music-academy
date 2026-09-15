@@ -1,7 +1,14 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Globe2 } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Globe2,
+  Music,
+} from "lucide-react";
 import { Link } from "wouter";
 import { getWhatsAppLink } from "@/lib/site-data";
+import { playInstrumentSound, stopAllSounds } from "@/lib/instrument-audio";
 
 export interface HeroSlide {
   id: string;
@@ -16,6 +23,7 @@ export interface HeroSlide {
   imageAlt: string;
   trialActionText: string;
   whatsappMessage: string;
+  soundLabel: string;
 }
 
 export const heroSlides: HeroSlide[] = [
@@ -26,16 +34,15 @@ export const heroSlides: HeroSlide[] = [
     title: "Fostering musical growth and excellence on Piano.",
     description:
       "Master touch, posture, two-hand coordination, sight-reading, worship voicings, and performance confidence with personalized 1-on-1 guidance.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1520523839898-50712825d3a3?auto=format&fit=crop&w=1080&q=85",
-    positionDesktop: "center 40%",
+    desktopImage: "/images/hero/piano-desktop.jpg",
+    mobileImage: "/images/hero/piano-mobile.jpg",
+    positionDesktop: "right center",
     positionMobile: "center center",
-    imageAlt: "Piano and keyboard instruction at ProsperWork",
-    trialActionText: "Book a FREE Trial Assessment",
+    imageAlt: "Hands playing piano keys at ProsperWork Music Academy",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Piano & Keyboard.",
+    soundLabel: "Piano chord harmonic progression",
   },
   {
     id: "saxophone",
@@ -44,16 +51,15 @@ export const heroSlides: HeroSlide[] = [
     title: "Master rich tone, embouchure, and saxophone expression.",
     description:
       "Train embouchure, tone control, articulation, melodic phrasing, and scale language for church worship, jazz, and contemporary playing.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1525994886773-080587e161c2?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1573871669414-010dbf73ca84?auto=format&fit=crop&w=1080&q=85",
+    desktopImage: "/images/hero/saxophone-desktop.jpg",
+    mobileImage: "/images/hero/saxophone-mobile.jpg",
     positionDesktop: "right center",
     positionMobile: "center center",
     imageAlt: "Saxophone musician performing",
-    trialActionText: "Book a FREE Trial Assessment",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Saxophone.",
+    soundLabel: "Saxophone melodic lick & tone",
   },
   {
     id: "voice",
@@ -62,16 +68,15 @@ export const heroSlides: HeroSlide[] = [
     title: "Unlock pitch accuracy, breath support, and vocal range.",
     description:
       "Develop a healthy singing voice through guided breath warmups, pitch accuracy, range extension, vowel placement, and confident delivery.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1080&q=85",
+    desktopImage: "/images/hero/voice-desktop.jpg",
+    mobileImage: "/images/hero/voice-mobile.jpg",
     positionDesktop: "right center",
     positionMobile: "center center",
     imageAlt: "Voice training and vocal masterclasses at ProsperWork",
-    trialActionText: "Book a FREE Trial Assessment",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Voice Training.",
+    soundLabel: "Vocal harmony & breath tone",
   },
   {
     id: "drums",
@@ -80,16 +85,15 @@ export const heroSlides: HeroSlide[] = [
     title: "Build metronome timing, independence, and dynamic groove.",
     description:
       "Build a strong rhythmic foundation with metronome discipline, four-way independence, rudiments, fills, and practical Afro-gospel groove vocabulary.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?auto=format&fit=crop&w=1080&q=85",
+    desktopImage: "/images/hero/drums-desktop.jpg",
+    mobileImage: "/images/hero/drums-mobile.jpg",
     positionDesktop: "right center",
     positionMobile: "center center",
     imageAlt: "Drumming instruction at ProsperWork",
-    trialActionText: "Book a FREE Trial Assessment",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Drums.",
+    soundLabel: "Acoustic drum groove & rhythm",
   },
   {
     id: "violin",
@@ -98,16 +102,15 @@ export const heroSlides: HeroSlide[] = [
     title: "Pure intonation, clean posture, and expressive bowing.",
     description:
       "Learn clean posture, bow grip, tone production, fingerboard accuracy, and expressive playing through a structured string pathway.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=1080&q=85",
+    desktopImage: "/images/hero/violin-desktop.jpg",
+    mobileImage: "/images/hero/violin-mobile.jpg",
     positionDesktop: "right center",
     positionMobile: "center center",
     imageAlt: "Violin instruction at ProsperWork",
-    trialActionText: "Book a FREE Trial Assessment",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Violin.",
+    soundLabel: "Violin string bowing passage",
   },
   {
     id: "guitar",
@@ -116,38 +119,63 @@ export const heroSlides: HeroSlide[] = [
     title: "From first chords and walking lines to band-ready groove.",
     description:
       "Move from first chords to full songs with strong rhythm, clean transitions, fingerpicking patterns, and solid bassline anchoring.",
-    desktopImage:
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=2000&q=85",
-    mobileImage:
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1080&q=85",
+    desktopImage: "/images/hero/guitar-desktop.jpg",
+    mobileImage: "/images/hero/guitar-mobile.jpg",
     positionDesktop: "right center",
     positionMobile: "center center",
     imageAlt: "Guitar lessons at ProsperWork",
-    trialActionText: "Book a FREE Trial Assessment",
+    trialActionText: "Book a FREE one-on-one trial assessment",
     whatsappMessage:
       "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Guitar.",
+    soundLabel: "Acoustic guitar arpeggio",
   },
 ];
 
 export function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isPlayingCurrent, setIsPlayingCurrent] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const soundTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const total = heroSlides.length;
   const current = heroSlides[currentIndex];
 
+  const playPreviewDirectly = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (soundTimeoutRef.current) clearTimeout(soundTimeoutRef.current);
+    setIsPlayingCurrent(true);
+    playInstrumentSound(current.id, 0.65);
+    soundTimeoutRef.current = setTimeout(() => {
+      setIsPlayingCurrent(false);
+    }, 2400);
+  };
+
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % total);
+    stopAllSounds();
+    setIsPlayingCurrent(false);
   }, [total]);
 
   const goToPrev = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + total) % total);
+    stopAllSounds();
+    setIsPlayingCurrent(false);
   }, [total]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
+    stopAllSounds();
+    setIsPlayingCurrent(false);
   };
+
+  // Clean up sounds on unmount
+  useEffect(() => {
+    return () => {
+      stopAllSounds();
+      if (soundTimeoutRef.current) clearTimeout(soundTimeoutRef.current);
+    };
+  }, []);
 
   // Auto-advance timer (6 seconds)
   useEffect(() => {
@@ -225,13 +253,36 @@ export function HeroSlideshow() {
         <ChevronRight size={28} />
       </button>
 
-      {/* Hero Content - Perfectly Centered */}
+      {/* Hero Content */}
       <div className="page-wrap home-hero-content">
-        <div className="hero-content-inner centered">
-          <span className="hero-kicker">
-            <Globe2 size={15} />
-            {current.eyebrow}
-          </span>
+        <div className="hero-content-inner">
+          <div className="hero-kicker-row">
+            <span key={`kicker-${current.id}`} className="hero-kicker">
+              <Globe2 size={15} />
+              {current.eyebrow}
+            </span>
+
+            {/* Interactive Instrument Audio Preview Pill */}
+            <button
+              type="button"
+              onClick={playPreviewDirectly}
+              className={`hero-preview-pill ${
+                isPlayingCurrent ? "playing" : ""
+              }`}
+              title={`Play ${current.instrument} audio preview`}
+              aria-label={`Play ${current.instrument} audio preview`}
+            >
+              <Music size={13} />
+              <span>Hear {current.instrument}</span>
+              {isPlayingCurrent && (
+                <span className="hero-sound-equalizer mini" aria-hidden="true">
+                  <span className="bar playing" />
+                  <span className="bar playing" />
+                  <span className="bar playing" />
+                </span>
+              )}
+            </button>
+          </div>
 
           <h1 key={`title-${current.id}`} className="hero-slide-title">
             {current.title}
@@ -241,7 +292,7 @@ export function HeroSlideshow() {
             {current.description}
           </p>
 
-          <div className="hero-actions">
+          <div key={`actions-${current.id}`} className="hero-actions">
             <a
               className="primary-link"
               href={getWhatsAppLink(current.whatsappMessage)}
@@ -256,7 +307,7 @@ export function HeroSlideshow() {
             </Link>
           </div>
 
-          {/* Minimalist Slide Pagination */}
+          {/* Minimalist Animated Slide Pagination */}
           <div
             className="hero-slide-pagination"
             role="tablist"
@@ -274,7 +325,16 @@ export function HeroSlideshow() {
                 }`}
                 onClick={() => goToSlide(index)}
               >
-                <span className="hero-page-line" />
+                <span className="hero-page-line">
+                  {index === currentIndex && (
+                    <span
+                      key={`timer-${currentIndex}-${isPaused}`}
+                      className={`hero-page-progress ${
+                        isPaused ? "paused" : ""
+                      }`}
+                    />
+                  )}
+                </span>
               </button>
             ))}
           </div>

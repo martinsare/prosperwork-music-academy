@@ -1,7 +1,7 @@
 import { Award, GraduationCap, ShieldCheck } from 'lucide-react';
 
 import { PageHero, SectionIntro } from '@/components/site/page-blocks';
-import { stageImage } from '@/lib/site-data';
+import { lessonImage } from '@/lib/site-data';
 
 export default function AboutPage() {
   return (
@@ -10,7 +10,7 @@ export default function AboutPage() {
         eyebrow="About"
         title="Fostering musical growth and excellence."
         copy="ProsperWork Music Concepts is a premier online music academy dedicated to fostering musical growth and excellence. We deliver high-quality, structured music education tailored to each student's goals. We teach students across the UK, US, Denmark, Nigeria, and worldwide."
-        image={stageImage}
+        image={lessonImage}
       />
 
       <section className="page-section">

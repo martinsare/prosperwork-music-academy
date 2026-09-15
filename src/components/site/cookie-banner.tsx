@@ -38,19 +38,21 @@ export function CookieBanner() {
       <div className="page-wrap cookie-banner-content">
         <div className="cookie-banner-text">
           <div className="cookie-banner-header">
-            <ShieldCheck size={18} className="cookie-banner-icon" />
-            <strong>Cookie Preferences & Privacy</strong>
+            <ShieldCheck
+              size={16}
+              className="cookie-banner-icon text-emerald-400"
+            />
+            <span className="cookie-banner-title">Cookie Preferences</span>
           </div>
-          <p>
-            We use essential cookies to ensure our website functions securely
-            and smoothly. Non-essential cookies help us analyze site traffic.
-            You can customize your choice or read our{" "}
+          <p className="cookie-banner-desc">
+            We use cookies to secure and enhance your learning experience. Read
+            our{" "}
             <Link href="/cookies" className="cookie-policy-link">
               Cookie Policy
             </Link>{" "}
             and{" "}
             <Link href="/privacy" className="cookie-policy-link">
-              Privacy Policy
+              Privacy
             </Link>
             .
           </p>
@@ -75,9 +77,9 @@ export function CookieBanner() {
             type="button"
             className="cookie-btn-close"
             onClick={() => handleAccept("essential")}
-            aria-label="Close cookie banner"
+            aria-label="Dismiss cookie notice"
           >
-            <X size={16} />
+            <X size={15} />
           </button>
         </div>
       </div>
