@@ -4,9 +4,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe2,
-  Music2,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "wouter";
 import { getWhatsAppLink } from "@/lib/site-data";
@@ -266,29 +264,36 @@ export function HeroSlideshow() {
             </button>
           </div>
 
-          {/* Instrument Dots / Selectors */}
-          <div
-            className="hero-slide-indicators"
-            role="tablist"
-            aria-label="Choose instrument slide"
-          >
-            {heroSlides.map((slide, index) => (
-              <button
-                key={slide.id}
-                type="button"
-                role="tab"
-                aria-selected={index === currentIndex}
-                aria-label={`Show ${slide.instrument} slide`}
-                className={`hero-dot-btn ${
-                  index === currentIndex ? "active" : ""
-                }`}
-                onClick={() => goToSlide(index)}
-              >
-                <span className="hero-dot-label">{slide.instrument}</span>
-                <span className="hero-dot-bar" />
-              </button>
-            ))}
+          {/* Auto-scrolling Instrument Selector */}
+          <div className="hero-course-ticker" aria-label="Academy programmes">
+            <div className="hero-course-track" role="tablist">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === currentIndex}
+                  aria-label={`Show ${slide.instrument} slide`}
+                  className={`hero-course-chip ${
+                    index === currentIndex ? "active" : ""
+                  }`}
+                  onClick={() => goToSlide(index)}
+                >
+                  {slide.instrument}
+                </button>
+              ))}
+              {heroSlides.map((slide) => (
+                <span
+                  key={`${slide.id}-loop`}
+                  className="hero-course-chip ghost"
+                  aria-hidden="true"
+                >
+                  {slide.instrument}
+                </span>
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
     </section>
