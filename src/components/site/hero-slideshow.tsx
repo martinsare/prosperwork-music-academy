@@ -1,11 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Globe2,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Globe2 } from "lucide-react";
 import { Link } from "wouter";
 import { getWhatsAppLink } from "@/lib/site-data";
 
@@ -13,12 +7,10 @@ export interface HeroSlide {
   id: string;
   instrument: string;
   eyebrow: string;
-  titlePrimary: string;
-  titleSecondary: string;
+  title: string;
   description: string;
   image: string;
   imageAlt: string;
-  badge: string;
   trialActionText: string;
   whatsappMessage: string;
 }
@@ -27,98 +19,86 @@ export const heroSlides: HeroSlide[] = [
   {
     id: "piano",
     instrument: "Piano & Keyboard",
-    eyebrow: "Private 1-on-1 Piano & Keyboard Studies",
-    titlePrimary: "Fostering musical growth",
-    titleSecondary: "on Piano & Keys.",
+    eyebrow: "ProsperWork Music Concepts • Piano & Keys",
+    title: "Fostering musical growth and excellence on Piano.",
     description:
-      "Master touch, two-hand coordination, sight-reading, worship chords, and performance confidence with dedicated 1-on-1 instruction tailored to your child’s pace.",
+      "Master touch, posture, two-hand coordination, sight-reading, worship voicings, and performance confidence with personalized 1-on-1 guidance.",
     image:
-      "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Student practicing keys in music studio",
-    badge: "Beginner to Grade 5 • 45m–1hr",
-    trialActionText: "Book FREE Piano Trial",
+      "https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Piano and keyboard instruction at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Piano.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Piano & Keyboard.",
   },
   {
     id: "saxophone",
     instrument: "Saxophone",
-    eyebrow: "Alto & Tenor Saxophone Academy",
-    titlePrimary: "Master rich tone, embouchure,",
-    titleSecondary: "and melodic expression.",
+    eyebrow: "ProsperWork Music Concepts • Saxophone Academy",
+    title: "Master rich tone, embouchure, and saxophone expression.",
     description:
-      "Develop warm tone extraction, breath support, phrasing, scale language, and confident improvisation for church worship, classical, and contemporary playing.",
+      "Train embouchure, tone control, articulation, melodic phrasing, and scale language for church worship, jazz, and contemporary playing.",
     image:
-      "https://images.unsplash.com/photo-1525994886773-080587e161c2?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Saxophone student in warm studio lighting",
-    badge: "Alto & Tenor • Graded Curriculum",
-    trialActionText: "Book FREE Saxophone Trial",
+      "https://images.unsplash.com/photo-1573871669414-010dbf73ca84?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Saxophone student learning at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Saxophone.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Saxophone.",
   },
   {
     id: "voice",
     instrument: "Voice Training",
-    eyebrow: "Private Vocal Coaching & Performance",
-    titlePrimary: "Unlock vocal range, pitch accuracy,",
-    titleSecondary: "and singing confidence.",
+    eyebrow: "ProsperWork Music Concepts • Vocal Studies",
+    title: "Unlock pitch accuracy, breath support, and vocal range.",
     description:
-      "Healthy vocal technique through guided breath warmups, pitch accuracy, vowel placement, diction, and expressive delivery across all musical genres.",
+      "Develop a healthy singing voice through guided breath warmups, pitch accuracy, range extension, vowel placement, and confident delivery.",
     image:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Vocalist performing with studio microphone",
-    badge: "All Ages • Solo & Worship",
-    trialActionText: "Book FREE Vocal Trial",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Voice training and vocal masterclasses at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Voice Training.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Voice Training.",
   },
   {
     id: "drums",
-    instrument: "Drums & Rhythm",
-    eyebrow: "Drums & Percussion Mastery",
-    titlePrimary: "Build metronome timing, limb independence,",
-    titleSecondary: "and dynamic groove.",
+    instrument: "Drums",
+    eyebrow: "ProsperWork Music Concepts • Drums & Rhythm",
+    title: "Build metronome timing, independence, and dynamic groove.",
     description:
-      "Solid rhythmic discipline with metronome practice, four-way limb independence, essential rudiments, fills, and vibrant Afro-gospel groove vocabulary.",
+      "Build a strong rhythmic foundation with metronome discipline, four-way independence, rudiments, fills, and practical Afro-gospel groove vocabulary.",
     image:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Drummer playing acoustic drum kit",
-    badge: "Rudiments & Timing • Live Grooves",
-    trialActionText: "Book FREE Drumming Trial",
+      "https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Drumming instruction at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Drums.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Drums.",
   },
   {
     id: "violin",
     instrument: "Violin",
-    eyebrow: "Classical & Contemporary Strings",
-    titlePrimary: "Pure intonation, clean posture,",
-    titleSecondary: "and expressive bowing.",
+    eyebrow: "ProsperWork Music Concepts • Strings Department",
+    title: "Pure intonation, clean posture, and expressive bowing.",
     description:
-      "From instrument setup and bow grip to Suzuki methods, classical repertoire, and graded Muson / ABRSM exam preparation under expert guidance.",
+      "Learn clean posture, bow grip, tone production, fingerboard accuracy, and expressive playing through a structured string pathway.",
     image:
-      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Violinist performing classical piece",
-    badge: "Acoustic Violin • Grade 1–5 Prep",
-    trialActionText: "Book FREE Violin Trial",
+      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Violin instruction at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Violin.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Violin.",
   },
   {
     id: "guitar",
     instrument: "Acoustic & Bass Guitar",
-    eyebrow: "Guitar & Bass Studio",
-    titlePrimary: "From first chords and walking basslines",
-    titleSecondary: "to band-ready groove.",
+    eyebrow: "ProsperWork Music Concepts • Guitar Studio",
+    title: "From first chords and walking lines to band-ready groove.",
     description:
-      "Learn fingerpicking, rhythm strumming, walking bass, and harmonic awareness with clear weekly practice targets and 24/7 admin monitoring.",
+      "Move from first chords to full songs with strong rhythm, clean transitions, fingerpicking patterns, and solid bassline anchoring.",
     image:
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1800&q=85",
-    imageAlt: "Guitarist playing acoustic guitar",
-    badge: "Acoustic & Bass • Band Ready",
-    trialActionText: "Book FREE Guitar Trial",
+      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1920&q=85",
+    imageAlt: "Guitar lessons at ProsperWork",
+    trialActionText: "Book a FREE Trial Assessment",
     whatsappMessage:
-      "Hello ProsperWork Music Concepts, I would like to book a FREE trial assessment for Guitar.",
+      "Hello ProsperWork Music Concepts, I would like to book a FREE one-on-one trial assessment for Guitar.",
   },
 ];
 
@@ -142,13 +122,13 @@ export function HeroSlideshow() {
     setCurrentIndex(index);
   };
 
-  // Auto-advance timer (6.5 seconds)
+  // Auto-advance timer (6 seconds)
   useEffect(() => {
     if (isPaused) return;
 
     timerRef.current = setInterval(() => {
       goToNext();
-    }, 6500);
+    }, 6000);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -165,10 +145,10 @@ export function HeroSlideshow() {
 
   return (
     <section
-      className="home-hero hero-slideshow"
+      className="hero-slideshow-container"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      aria-label="Academy programmes slideshow"
+      aria-label="ProsperWork Music Academy Showcase"
     >
       {/* Background Image Layers with Smooth Cross-fade */}
       <div className="hero-slide-images" aria-hidden="true">
@@ -185,22 +165,35 @@ export function HeroSlideshow() {
 
       <div className="home-hero-shade" />
 
-      {/* Hero Content */}
+      {/* Floating Side Arrow Navigation */}
+      <button
+        type="button"
+        className="hero-side-nav prev"
+        onClick={goToPrev}
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={28} />
+      </button>
+
+      <button
+        type="button"
+        className="hero-side-nav next"
+        onClick={goToNext}
+        aria-label="Next slide"
+      >
+        <ChevronRight size={28} />
+      </button>
+
+      {/* Hero Content - Perfectly Centered */}
       <div className="page-wrap home-hero-content">
-        <div className="hero-content-inner">
-          <div className="hero-badge-row">
-            <span className="hero-kicker">
-              <Globe2 size={16} />
-              {current.eyebrow}
-            </span>
-            <span className="hero-pill">
-              <ShieldCheck size={14} />
-              {current.badge}
-            </span>
-          </div>
+        <div className="hero-content-inner centered">
+          <span className="hero-kicker">
+            <Globe2 size={15} />
+            {current.eyebrow}
+          </span>
 
           <h1 key={`title-${current.id}`} className="hero-slide-title">
-            {current.titlePrimary} <span>{current.titleSecondary}</span>
+            {current.title}
           </h1>
 
           <p key={`desc-${current.id}`} className="hero-slide-desc">
@@ -215,85 +208,35 @@ export function HeroSlideshow() {
               rel="noreferrer"
             >
               {current.trialActionText}
-              <ArrowRight size={18} />
+              <ArrowRight size={17} />
             </a>
             <Link className="secondary-link" href="/courses">
-              Explore all courses
+              Explore programmes
             </Link>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="hero-metrics">
-            <span>
-              <strong>1-on-1</strong>
-              Personalized Private Pace
-            </span>
-            <span>
-              <strong>24/7</strong>
-              Admin Monitored Classes
-            </span>
-            <span>
-              <strong>Worldwide</strong>
-              UK • US • Denmark • Nigeria
-            </span>
+          {/* Minimalist Slide Pagination */}
+          <div
+            className="hero-slide-pagination"
+            role="tablist"
+            aria-label="Slideshow pagination"
+          >
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                role="tab"
+                aria-selected={index === currentIndex}
+                aria-label={`Go to ${slide.instrument} slide`}
+                className={`hero-page-dot ${
+                  index === currentIndex ? "active" : ""
+                }`}
+                onClick={() => goToSlide(index)}
+              >
+                <span className="hero-page-line" />
+              </button>
+            ))}
           </div>
-        </div>
-
-        {/* Slide Controls & Thumbnails */}
-        <div className="hero-controls-bar">
-          <div className="hero-nav-buttons">
-            <button
-              type="button"
-              className="hero-arrow-btn"
-              onClick={goToPrev}
-              aria-label="Previous slide"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <span className="hero-slide-counter">
-              <strong>{String(currentIndex + 1).padStart(2, "0")}</strong> /{" "}
-              {String(total).padStart(2, "0")}
-            </span>
-            <button
-              type="button"
-              className="hero-arrow-btn"
-              onClick={goToNext}
-              aria-label="Next slide"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-
-          {/* Auto-scrolling Instrument Selector */}
-          <div className="hero-course-ticker" aria-label="Academy programmes">
-            <div className="hero-course-track" role="tablist">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === currentIndex}
-                  aria-label={`Show ${slide.instrument} slide`}
-                  className={`hero-course-chip ${
-                    index === currentIndex ? "active" : ""
-                  }`}
-                  onClick={() => goToSlide(index)}
-                >
-                  {slide.instrument}
-                </button>
-              ))}
-              {heroSlides.map((slide) => (
-                <span
-                  key={`${slide.id}-loop`}
-                  className="hero-course-chip ghost"
-                  aria-hidden="true"
-                >
-                  {slide.instrument}
-                </span>
-              ))}
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
