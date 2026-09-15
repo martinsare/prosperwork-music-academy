@@ -1,6 +1,18 @@
-import { type ReactNode, useEffect, useState } from 'react';
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Menu, MessageCircle, Music2, Phone, X } from 'lucide-react';
-import { Link, useLocation } from 'wouter';
+import { type ReactNode, useEffect, useState } from "react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Music2,
+  Phone,
+  Shield,
+  X,
+} from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 import {
   courses,
@@ -14,7 +26,9 @@ import {
   SCHOOL_NAME,
   SCHOOL_PHONE,
   SCHOOL_PHONE_DISPLAY,
-} from '@/lib/site-data';
+} from "@/lib/site-data";
+
+import { CookieBanner } from "@/components/site/cookie-banner";
 
 function Header() {
   const [location] = useLocation();
@@ -22,7 +36,7 @@ function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
   return (
@@ -40,13 +54,22 @@ function Header() {
 
         <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={location === item.href ? 'active' : ''}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={location === item.href ? "active" : ""}
+            >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <a className="nav-action" href={getWhatsAppLink()} target="_blank" rel="noreferrer">
+        <a
+          className="nav-action"
+          href={getWhatsAppLink()}
+          target="_blank"
+          rel="noreferrer"
+        >
           <MessageCircle size={16} />
           Trial
         </a>
@@ -57,7 +80,7 @@ function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((open) => !open)}
-          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -66,7 +89,11 @@ function Header() {
       {menuOpen && (
         <div className="mobile-panel" id="mobile-navigation">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={location === item.href ? 'active' : ''}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={location === item.href ? "active" : ""}
+            >
               {item.label}
             </Link>
           ))}
@@ -93,7 +120,11 @@ function Footer() {
               <small>Music Concepts</small>
             </span>
           </Link>
-          <p>Private online music lessons with human support, structured progress, and class monitoring for learners worldwide.</p>
+          <p>
+            Private online music lessons with human support, structured
+            progress, and 24/7 dedicated admin monitoring for learners
+            worldwide.
+          </p>
         </div>
 
         <div>
@@ -106,12 +137,12 @@ function Footer() {
         </div>
 
         <div>
-          <h2>Courses</h2>
-          {courses.slice(0, 5).map((course) => (
-            <Link key={course.id} href="/courses">
-              {course.name}
-            </Link>
-          ))}
+          <h2>Legal & Trust</h2>
+          <Link href="/terms">Terms of Service</Link>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/safeguarding">Child Safeguarding</Link>
+          <Link href="/refund-policy">Refund & Cancellation</Link>
+          <Link href="/cookies">Cookie Policy</Link>
         </div>
 
         <div>
@@ -129,21 +160,48 @@ function Footer() {
             {SCHOOL_ADDRESS}
           </span>
           <div className="social-row">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
               <Instagram size={17} />
             </a>
-            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook">
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+            >
               <Facebook size={17} />
             </a>
-            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
               <Linkedin size={17} />
             </a>
           </div>
         </div>
       </div>
       <div className="page-wrap footer-bottom">
-        <span>© {new Date().getFullYear()} {SCHOOL_NAME}</span>
-        <span>Online from Lagos to the world</span>
+        <span>
+          © {new Date().getFullYear()} {SCHOOL_NAME}. All rights reserved.
+        </span>
+        <div className="footer-legal-links">
+          <Link href="/privacy">Privacy</Link>
+          <span>•</span>
+          <Link href="/terms">Terms</Link>
+          <span>•</span>
+          <Link href="/safeguarding">Safeguarding</Link>
+          <span>•</span>
+          <Link href="/refund-policy">Refund Policy</Link>
+          <span>•</span>
+          <Link href="/cookies">Cookies</Link>
+        </div>
       </div>
     </footer>
   );
@@ -155,6 +213,7 @@ export function Shell({ children }: { children: ReactNode }) {
       <Header />
       <main>{children}</main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 }
