@@ -12,6 +12,7 @@ import FaqsPage from "@/pages/faqs";
 import HomePage from "@/pages/home";
 import HowItWorksPage from "@/pages/how-it-works";
 import JesusKidsPage from "@/pages/jesus-kids";
+import ShowcasePage from "@/pages/showcase";
 import NotFound from "@/pages/not-found";
 import TermsPage from "@/pages/terms";
 import PrivacyPage from "@/pages/privacy";
@@ -31,6 +32,7 @@ function AppRouter() {
           <Route path="/" component={HomePage} />
           <Route path="/courses" component={CoursesPage} />
           <Route path="/how-it-works" component={HowItWorksPage} />
+          <Route path="/showcase" component={ShowcasePage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/jesus-kids" component={JesusKidsPage} />
           <Route path="/faqs" component={FaqsPage} />

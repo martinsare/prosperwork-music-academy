@@ -191,8 +191,143 @@ export default function HomePage() {
       </section>
 
       <section className="page-section">
+        <div className="page-wrap showcase-mosaic-layout">
+          <div>
+            <SectionIntro
+              eyebrow="Live academy moments"
+              title="Real instruction, focused practice, and visible progress."
+              copy="Whether learning from the UK, US, Denmark, or Nigeria, our students receive structured 1-on-1 guidance from world-class instructors with dedicated administrative oversight."
+            />
+            <div className="mosaic-bullets">
+              <div className="bullet-item">
+                <ShieldCheck
+                  size={18}
+                  className="bullet-icon text-emerald-600"
+                />
+                <span>Private 45-60 minute personalized sessions</span>
+              </div>
+              <div className="bullet-item">
+                <Award size={18} className="bullet-icon text-emerald-600" />
+                <span>MUSON Certification & ABRSM exam preparation</span>
+              </div>
+              <div className="bullet-item">
+                <Trophy size={18} className="bullet-icon text-emerald-600" />
+                <span>Annual online student showcase with awards</span>
+              </div>
+            </div>
+            <div className="pt-4">
+              <Link className="primary-link" href="/showcase">
+                Explore Student Gallery & Recitals
+                <ArrowRight size={17} />
+              </Link>
+            </div>
+          </div>
+
+          {/* 3-Photo Structured Mosaic (SFGS Pattern) */}
+          <div className="showcase-photo-mosaic">
+            <div className="mosaic-main">
+              <img
+                src="/images/showcase/showcase-piano-lesson.jpg"
+                alt="1-on-1 Online Piano lesson in session"
+                loading="lazy"
+                className="mosaic-img"
+              />
+              <span className="mosaic-tag">Piano & Keys Studio</span>
+            </div>
+            <div className="mosaic-sub-grid">
+              <div className="mosaic-sub">
+                <img
+                  src="/images/showcase/showcase-sax-recital.jpg"
+                  alt="Saxophone masterclass session"
+                  loading="lazy"
+                  className="mosaic-img"
+                />
+                <span className="mosaic-tag">Saxophone</span>
+              </div>
+              <div className="mosaic-sub">
+                <img
+                  src="/images/showcase/showcase-drum-lesson.jpg"
+                  alt="Drum rhythm instruction"
+                  loading="lazy"
+                  className="mosaic-img"
+                />
+                <span className="mosaic-tag">Drums & Rhythm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Student Recital & Performance Highlights */}
+      <section className="page-section tinted">
+        <div className="page-wrap">
+          <div className="section-heading-row">
+            <SectionIntro
+              eyebrow="Student recitals"
+              title="Hear and watch our learners perform."
+              copy="From introductory exercises to full worship pieces and classical standards, see the results of steady practice and 1-on-1 coaching."
+            />
+            <Link className="text-link" href="/showcase">
+              View all video recitals
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="home-recital-grid">
+            {[
+              {
+                title: "Sarah’s Classical Piano Recital: Ode to Joy",
+                student: "Sarah (Age 9)",
+                instrument: "Piano",
+                duration: "2:15",
+                img: "/images/showcase/video-thumb-piano-recital.jpg",
+              },
+              {
+                title: "Emmanuel’s Saxophone Melodic Tone & Solo",
+                student: "Emmanuel (Intermediate)",
+                instrument: "Saxophone",
+                duration: "3:40",
+                img: "/images/showcase/video-thumb-sax-solo.jpg",
+              },
+              {
+                title: "Jesus Kids Praise & Scripture Recital",
+                student: "Children Fellowship",
+                instrument: "Choir & Keys",
+                duration: "4:10",
+                img: "/images/showcase/video-thumb-kids-praise.jpg",
+              },
+            ].map((recital) => (
+              <Link
+                href="/showcase"
+                key={recital.title}
+                className="recital-card"
+              >
+                <div className="recital-thumb">
+                  <img src={recital.img} alt={recital.title} loading="lazy" />
+                  <div className="recital-play-badge">
+                    <span className="play-circle">
+                      <ArrowRight size={18} />
+                    </span>
+                  </div>
+                  <span className="recital-tag">{recital.instrument}</span>
+                  <span className="recital-duration">{recital.duration}</span>
+                </div>
+                <div className="recital-body">
+                  <h3>{recital.title}</h3>
+                  <span className="recital-performer">{recital.student}</span>
+                  <span className="recital-link">
+                    Watch Recital <ArrowRight size={14} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="page-section">
         <div className="page-wrap outcomes-grid">
-          <article className="outcome-card showcase-card">
+          <article className="home-outcome-card">
             <Trophy size={24} />
             <span className="eyebrow">Student showcases</span>
             <h2>Give the work a stage.</h2>
@@ -201,12 +336,12 @@ export default function HomePage() {
               with prizes, giving students a platform to perform, shine, and
               stay motivated.
             </p>
-            <Link className="text-link" href="/contact">
-              Ask about upcoming showcases
+            <Link className="text-link" href="/showcase">
+              Explore past showcases
               <ArrowRight size={16} />
             </Link>
           </article>
-          <article className="outcome-card fellowship-card">
+          <article className="home-outcome-card fellowship-card">
             <HeartHandshake size={24} />
             <span className="eyebrow">Optional fellowship</span>
             <h2>Music, encouragement, and faith.</h2>
