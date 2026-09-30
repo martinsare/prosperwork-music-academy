@@ -119,9 +119,67 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
+
+/* Ambient Floating Music Notes Layer */
+.music-notes-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-note-particle {
+  position: absolute;
+  bottom: -60px;
+  will-change: transform, opacity;
+  animation: floatMusicNote linear infinite;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 10px rgba(19, 91, 69, 0.15));
+}
+
+@keyframes floatMusicNote {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--initial-rot, 0deg)) scale(0.85);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+    transform: translate3d(calc(var(--sway-x, 30px) * 0.5), -20vh, 0)
+      rotate(calc(var(--initial-rot, 0deg) + 18deg)) scale(1);
+  }
+  50% {
+    transform: translate3d(calc(var(--sway-x, 30px) * -1), -55vh, 0)
+      rotate(calc(var(--initial-rot, 0deg) - 20deg)) scale(1.08);
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.7;
+    transform: translate3d(calc(var(--sway-x, 30px) * 0.8), -90vh, 0)
+      rotate(calc(var(--initial-rot, 0deg) + 30deg)) scale(0.95);
+  }
+  100% {
+    transform: translate3d(0, -115vh, 0)
+      rotate(calc(var(--initial-rot, 0deg) + 45deg)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-note-particle {
+    animation: none;
+    display: none;
+  }
+}
+
 main {
   flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 /* Structured, premium online academy system. */

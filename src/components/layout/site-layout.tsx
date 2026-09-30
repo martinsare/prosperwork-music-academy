@@ -29,6 +29,7 @@ import {
 } from "@/lib/site-data";
 
 import { CookieBanner } from "@/components/site/cookie-banner";
+import { MusicNotesBackdrop } from "@/components/site/music-notes-backdrop";
 
 function Header() {
   const [location] = useLocation();
@@ -218,6 +219,7 @@ function Footer() {
 export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell">
+      <MusicNotesBackdrop />
       <Header />
       <main>{children}</main>
       <Footer />
