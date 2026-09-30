@@ -130,6 +130,7 @@
   height: 100vh;
   pointer-events: none;
   z-index: 0;
+  z-index: 20;
   overflow: hidden;
 }
 
@@ -308,6 +309,45 @@ main {
   flex: 1;
   position: relative;
   z-index: 2;
+  z-index: 22;
+}
+
+/* Ensure all cards, buttons, forms, and interactive components sit in front of streaming notes */
+.course-card,
+.recital-card,
+.journey-card,
+.showcase-card,
+.home-outcome-card,
+.outcome-card,
+.learning-path-card,
+.timeline article,
+.feature-row,
+.support-item,
+.enrollment-band,
+.jesus-panel,
+.contact-panel,
+.faq-aside,
+.page-hero-media,
+.showcase-photo-mosaic,
+.lead-form,
+.admission-form,
+.hero-content-inner,
+.hero-slideshow-container,
+.footer {
+  position: relative;
+  z-index: 25;
+}
+
+.primary-link,
+.secondary-link,
+.nav-action,
+.text-link,
+button,
+input,
+select,
+textarea {
+  position: relative;
+  z-index: 28;
 }
 
 /* Structured, premium online academy system. */
