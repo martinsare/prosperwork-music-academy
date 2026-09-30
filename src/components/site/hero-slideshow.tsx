@@ -141,6 +141,9 @@ export function HeroSlideshow() {
   const total = heroSlides.length;
   const current = heroSlides[currentIndex];
 
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
+
   const playPreviewDirectly = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (soundTimeoutRef.current) clearTimeout(soundTimeoutRef.current);
@@ -167,6 +170,34 @@ export function HeroSlideshow() {
     setCurrentIndex(index);
     stopAllSounds();
     setIsPlayingCurrent(false);
+  };
+
+  // Mobile Touch Swipe Handlers (Swipe Left -> Next, Swipe Right -> Prev)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null)
+      return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const diffX = touchStartXRef.current - touchEndX;
+    const diffY = touchStartYRef.current - touchEndY;
+
+    // Trigger swipe transition if horizontal motion exceeds 35px and is predominantly horizontal
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+      if (diffX > 0) {
+        goToNext();
+      } else {
+        goToPrev();
+      }
+    }
+
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
   };
 
   // Clean up sounds on unmount
@@ -203,8 +234,14 @@ export function HeroSlideshow() {
   return (
     <section
       className="hero-slideshow-container"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onPointerEnter={(e) => {
+        if (e.pointerType === "mouse") setIsPaused(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType === "mouse") setIsPaused(false);
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       aria-label="ProsperWork Music Academy Showcase"
     >
       {/* Background Image Layers with Smooth Cross-fade and Responsive Sources */}
