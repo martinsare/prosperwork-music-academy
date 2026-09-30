@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useRef, useEffect } from "react";
 import { playNotePopSound } from "@/lib/instrument-audio";
 
 interface NoteParticle {
@@ -15,11 +15,11 @@ interface NoteParticle {
 }
 
 const NOTE_COLORS = [
-  "rgba(19, 91, 69, 0.35)",   // Forest
-  "rgba(143, 202, 171, 0.45)", // Mint/Coral
-  "rgba(16, 185, 129, 0.40)",  // Bright Emerald
-  "rgba(203, 229, 214, 0.55)", // Sun/Sage
-  "rgba(5, 150, 105, 0.38)",   // Deep Jade
+  "rgba(19, 91, 69, 0.40)",   // Forest
+  "rgba(143, 202, 171, 0.52)", // Mint/Coral
+  "rgba(16, 185, 129, 0.45)",  // Bright Emerald
+  "rgba(203, 229, 214, 0.60)", // Sun/Sage
+  "rgba(5, 150, 105, 0.42)",   // Deep Jade
 ];
 
 function NoteSvg({
@@ -41,7 +41,7 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.8"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -60,7 +60,7 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.8"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -72,12 +72,12 @@ function NoteSvg({
       // Treble Clef 𝄞
       return (
         <svg
-          width={size * 1.1}
-          height={size * 1.35}
+          width={size * 1.15}
+          height={size * 1.4}
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.6"
+          strokeWidth="1.7"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -94,7 +94,7 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="2"
+          strokeWidth="2.1"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -113,7 +113,7 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.8"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -138,7 +138,7 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.8"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -172,18 +172,19 @@ function SparkleBurst({ color }: { color: string }) {
 
 export function MusicNotesBackdrop() {
   const [burstIds, setBurstIds] = useState<Set<number>>(new Set());
+  const noteRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
-  // Handle interactive touch / click / hover pop
+  // Handle interactive note pop
   const handleNoteBurst = useCallback((id: number) => {
-    if (burstIds.has(id)) return;
+    setBurstIds((prev) => {
+      if (prev.has(id)) return prev;
+      playNotePopSound();
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
 
-    // Play pleasant pentatonic chime
-    playNotePopSound();
-
-    // Mark as bursting
-    setBurstIds((prev) => new Set(prev).add(id));
-
-    // Respawns smoothly after 3.2s
+    // Auto-respawn after 3.2s
     setTimeout(() => {
       setBurstIds((prev) => {
         const next = new Set(prev);
@@ -191,11 +192,52 @@ export function MusicNotesBackdrop() {
         return next;
       });
     }, 3200);
-  }, [burstIds]);
+  }, []);
+
+  // Content-Aware Global Pointer Detection (Hit testing)
+  useEffect(() => {
+    const onGlobalPointerDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      // If user is clicking an active interactive button, link, form input, or modal control,
+      // let the control handle it without popping background notes!
+      const isControl = target.closest(
+        'button, a, input, select, textarea, [role="button"], video, iframe, audio, label, .media-modal-backdrop, .cookie-banner, .site-header, .faq-list button, .hero-preview-pill'
+      );
+      if (isControl) return;
+
+      const clickX = e.clientX;
+      const clickY = e.clientY;
+
+      // Check all active notes on screen using live getBoundingClientRect()
+      noteRefs.current.forEach((el, id) => {
+        if (!el || burstIds.has(id)) return;
+        const rect = el.getBoundingClientRect();
+        
+        // Ensure note is currently visible within the viewport
+        if (rect.right < 0 || rect.left > window.innerWidth) return;
+
+        const noteCenterX = rect.left + rect.width / 2;
+        const noteCenterY = rect.top + rect.height / 2;
+        const distance = Math.hypot(clickX - noteCenterX, clickY - noteCenterY);
+
+        // Generous, intuitive hit radius (45px)
+        if (distance <= Math.max(rect.width * 0.9, 45)) {
+          handleNoteBurst(id);
+        }
+      });
+    };
+
+    window.addEventListener("pointerdown", onGlobalPointerDown, { passive: true });
+    return () => {
+      window.removeEventListener("pointerdown", onGlobalPointerDown);
+    };
+  }, [handleNoteBurst, burstIds]);
 
   // Generate harmonious horizontal melodic streams
   const notes = useMemo<NoteParticle[]>(() => {
-    const tracks = [10, 22, 36, 50, 64, 78, 88]; // 7 melodic stave levels
+    const tracks = [12, 24, 38, 52, 65, 78, 88]; // 7 melodic stave levels
     const items: NoteParticle[] = [];
     let id = 0;
 
@@ -203,16 +245,19 @@ export function MusicNotesBackdrop() {
       const countInTrack = 3;
       for (let i = 0; i < countInTrack; i++) {
         const duration = 20 + ((id * 4) % 16); // 20s to 36s
-        const delay = -((i * (duration / countInTrack)) + (trackIdx * 3.1) % duration);
-        
+        const delay = -(
+          i * (duration / countInTrack) +
+          ((trackIdx * 3.1) % duration)
+        );
+
         items.push({
           id: id++,
           type: (id + trackIdx) % 6,
           top: trackPercent + ((id % 3) * 3 - 3),
-          size: 22 + ((id * 6) % 22), // 22px to 44px
+          size: 24 + ((id * 6) % 20), // 24px to 44px
           duration,
           delay,
-          opacity: 0.38 + ((id % 3) * 0.15),
+          opacity: 0.42 + (id % 3) * 0.15,
           rotation: -12 + ((id * 17) % 25),
           waveAmplitude: 15 + ((id * 7) % 25),
           color: NOTE_COLORS[(id + trackIdx) % NOTE_COLORS.length],
@@ -231,6 +276,13 @@ export function MusicNotesBackdrop() {
         return (
           <div
             key={note.id}
+            ref={(el) => {
+              if (el) {
+                noteRefs.current.set(note.id, el);
+              } else {
+                noteRefs.current.delete(note.id);
+              }
+            }}
             className={`stream-note-particle ${isBursting ? "bursting" : ""}`}
             style={{
               top: `${note.top}%`,
@@ -240,9 +292,6 @@ export function MusicNotesBackdrop() {
               ["--wave-amp" as string]: `${note.waveAmplitude}px`,
               ["--rot-start" as string]: `${note.rotation}deg`,
             }}
-            onClick={() => handleNoteBurst(note.id)}
-            onPointerDown={() => handleNoteBurst(note.id)}
-            title="Touch or click to pop note!"
             onClick={(e) => {
               e.stopPropagation();
               handleNoteBurst(note.id);
@@ -258,7 +307,6 @@ export function MusicNotesBackdrop() {
             {isBursting ? (
               <SparkleBurst color={note.color} />
             ) : (
-              <div className="note-touch-target">
               <div
                 className="note-touch-target"
                 onClick={(e) => {
