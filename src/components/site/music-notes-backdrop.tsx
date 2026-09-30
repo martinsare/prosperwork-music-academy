@@ -1,4 +1,10 @@
-import React, { useMemo, useState, useCallback, useRef, useEffect } from "react";
+import React, {
+  useMemo,
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+} from "react";
 import { playNotePopSound } from "@/lib/instrument-audio";
 
 interface NoteParticle {
@@ -16,11 +22,11 @@ interface NoteParticle {
 
 // Delicate, subtle, elegant translucent brand tones
 const NOTE_COLORS = [
-  "rgba(19, 91, 69, 0.22)",    // Soft Forest
+  "rgba(19, 91, 69, 0.22)", // Soft Forest
   "rgba(143, 202, 171, 0.28)", // Pale Mint
-  "rgba(16, 185, 129, 0.22)",  // Soft Emerald
-  "rgba(94, 113, 104, 0.20)",  // Muted Sage
-  "rgba(5, 150, 105, 0.24)",   // Translucent Jade
+  "rgba(16, 185, 129, 0.22)", // Soft Emerald
+  "rgba(94, 113, 104, 0.20)", // Muted Sage
+  "rgba(5, 150, 105, 0.24)", // Translucent Jade
 ];
 
 function NoteSvg({
@@ -205,11 +211,11 @@ export function MusicNotesBackdrop() {
       // notes sitting behind these elements are obscured and MUST NOT be clickable!
       const isForegroundCover = target.closest(
         'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
-        'video, iframe, audio, label, img, pre, code, ' +
-        '.site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, ' +
-        '.course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, ' +
-        '.learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, ' +
-        '.faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic, .proof-panel div, .lesson-flow div'
+          "video, iframe, audio, label, img, pre, code, " +
+          ".site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, " +
+          ".course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, " +
+          ".learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, " +
+          ".faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic, .proof-panel div, .lesson-flow div"
       );
       if (isForegroundCover) return;
 
@@ -220,9 +226,15 @@ export function MusicNotesBackdrop() {
       noteRefs.current.forEach((el, id) => {
         if (!el || burstIds.has(id)) return;
         const rect = el.getBoundingClientRect();
-        
+
         // Ensure note is currently visible within the viewport
-        if (rect.right < 0 || rect.left > window.innerWidth || rect.bottom < 0 || rect.top > window.innerHeight) return;
+        if (
+          rect.right < 0 ||
+          rect.left > window.innerWidth ||
+          rect.bottom < 0 ||
+          rect.top > window.innerHeight
+        )
+          return;
 
         const noteCenterX = rect.left + rect.width / 2;
         const noteCenterY = rect.top + rect.height / 2;
@@ -231,14 +243,17 @@ export function MusicNotesBackdrop() {
         // Generous, intuitive hit radius (32px)
         if (distance <= Math.max(rect.width * 0.9, 32)) {
           // Double check that the note center is not physically covered by a modal or card
-          const topElAtCenter = document.elementFromPoint(noteCenterX, noteCenterY);
+          const topElAtCenter = document.elementFromPoint(
+            noteCenterX,
+            noteCenterY
+          );
           if (topElAtCenter) {
             const isOccluded = topElAtCenter.closest(
               'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
-              '.site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, ' +
-              '.course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, ' +
-              '.learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, ' +
-              '.faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic'
+                ".site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, " +
+                ".course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, " +
+                ".learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, " +
+                ".faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic"
             );
             if (isOccluded) return;
           }
@@ -248,7 +263,9 @@ export function MusicNotesBackdrop() {
       });
     };
 
-    window.addEventListener("pointerdown", onGlobalPointerDown, { passive: true });
+    window.addEventListener("pointerdown", onGlobalPointerDown, {
+      passive: true,
+    });
     return () => {
       window.removeEventListener("pointerdown", onGlobalPointerDown);
     };
