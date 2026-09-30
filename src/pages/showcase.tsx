@@ -39,18 +39,18 @@ export default function ShowcasePage() {
       <PageHero
         eyebrow="Media & Showcases"
         title="Real moments, live lessons, and student recitals."
-        copy="Explore how our students grow from their very first notes to confident performances. Watch live student recitals, see our 1-on-1 coaching sessions, and discover our award-winning learning environment."
-        image="/images/showcase/showcase-annual-awards.jpg"
+        copy="Explore how our students grow from their very first notes to confident performances. Watch student recitals and see moments from our 1-on-1 coaching sessions."
+        image="/images/showcase/showcase-piano-lesson.jpg"
       />
 
-      {/* Academy Quality Milestones Strip */}
+      {/* Academy context for the student media gallery */}
       <section className="showcase-milestones-bar">
         <div className="page-wrap showcase-milestones-inner">
           <div className="milestone-item">
             <Trophy size={20} className="milestone-icon" />
             <div>
-              <strong>100% Exam Pass Rate</strong>
-              <span>MUSON, ABRSM & Trinity pathway prep</span>
+              <strong>Exam preparation</strong>
+              <span>MUSON, ABRSM & Trinity pathways</span>
             </div>
           </div>
           <div className="milestone-item">
@@ -63,8 +63,8 @@ export default function ShowcasePage() {
           <div className="milestone-item">
             <ShieldCheck size={20} className="milestone-icon" />
             <div>
-              <strong>24/7 Quality Oversight</strong>
-              <span>Live administrative attendance for every lesson</span>
+              <strong>24/7 class monitoring</strong>
+              <span>Live admin oversight for every lesson</span>
             </div>
           </div>
         </div>

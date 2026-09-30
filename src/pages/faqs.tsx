@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronDown, CircleHelp } from 'lucide-react';
 
 import { PageHero } from '@/components/site/page-blocks';
 import { faqsList, getWhatsAppLink } from '@/lib/site-data';
@@ -7,7 +7,7 @@ import { faqsList, getWhatsAppLink } from '@/lib/site-data';
 function HelpCard() {
   return (
     <div>
-      <Sparkles size={28} />
+      <CircleHelp size={28} />
       <h2>Still deciding?</h2>
       <p>Send admissions the learner age and course interest. They will help you choose the right starting point.</p>
       <a href={getWhatsAppLink()} target="_blank" rel="noreferrer">

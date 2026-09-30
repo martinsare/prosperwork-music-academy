@@ -1995,6 +1995,18 @@ textarea:focus {
   gap: 2rem;
 }
 
+.section-heading-row > .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.section-heading-row > .text-link svg {
+  flex: 0 0 auto;
+}
+
 .journey-section {
   padding-top: clamp(4rem, 8vw, 7rem);
 }
@@ -2406,7 +2418,7 @@ textarea:focus {
   .showcase-grid,
   .journey-grid,
   .outcomes-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 1.25rem;
   }
   .journey-card,
@@ -3629,5 +3641,541 @@ textarea:focus {
     white-space: nowrap;
     padding: 0.5rem 0.95rem;
     font-size: 0.76rem;
+  }
+}
+
+/* Responsive polish across compact phones, tablets, laptops, and wide screens. */
+html,
+body,
+#root,
+.app-shell {
+  width: 100%;
+  min-width: 0;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+main,
+section,
+article,
+.page-wrap,
+.nav-shell,
+.mobile-panel,
+.footer-grid > *,
+.split-layout > *,
+.about-layout > *,
+.contact-layout > *,
+.faq-layout > *,
+.page-hero-grid > *,
+.enrollment-band > *,
+.accountability-layout > * {
+  min-width: 0;
+}
+
+.page-wrap,
+.nav-shell,
+.mobile-panel {
+  width: min(calc(100% - clamp(1.5rem, 5vw, 4rem)), 1280px);
+}
+
+.page-section {
+  padding-block: clamp(3.25rem, 7vw, 7rem);
+}
+
+.section-intro h2,
+.page-hero h1,
+.enrollment-band h2,
+.jesus-panel h2,
+.contact-panel h2,
+.faq-aside h2,
+.hero-slide-title {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.section-intro p,
+.page-hero p,
+.enrollment-band p,
+.footer-grid p,
+.footer-grid > div > a,
+.footer-grid > div > span {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .course-strip,
+  .course-grid,
+  .journey-grid,
+  .home-recital-grid,
+  .showcase-grid,
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .nav-shell {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .course-strip,
+  .course-grid,
+  .journey-grid,
+  .home-recital-grid,
+  .showcase-grid,
+  .timeline,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .journey-grid,
+  .course-strip,
+  .home-recital-grid,
+  .showcase-grid,
+  .timeline,
+  .footer-grid {
+    gap: 1rem;
+  }
+
+  .course-card,
+  .course-detail-card,
+  .journey-card,
+  .timeline article,
+  .showcase-card,
+  .recital-card {
+    padding: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    padding-block: 3.25rem;
+  }
+
+  .nav-shell {
+    min-height: 68px;
+    gap: 0.75rem;
+  }
+
+  .menu-button {
+    flex: 0 0 44px;
+    border-radius: 8px;
+  }
+
+  .mobile-panel {
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+
+  .mobile-panel a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-intro::before {
+    left: -0.65rem;
+  }
+
+  .section-intro h2,
+  .enrollment-band h2,
+  .jesus-panel h2,
+  .contact-panel h2,
+  .faq-aside h2 {
+    font-size: clamp(1.85rem, 6.8vw, 2.75rem);
+  }
+
+  .home-hero-content {
+    width: min(calc(100% - 1.5rem), 1280px);
+  }
+
+  .page-hero {
+    padding-block: 3.25rem;
+  }
+
+  .page-hero-grid {
+    gap: 1.5rem;
+  }
+
+  .page-hero-media {
+    height: clamp(190px, 52vw, 320px);
+  }
+
+  .feature-row,
+  .support-item,
+  .lesson-flow div,
+  .proof-panel div {
+    gap: 0.85rem;
+  }
+
+  .media-modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .media-modal-container {
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
+  }
+
+  .media-modal-header,
+  .media-modal-footer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .course-strip,
+  .course-grid,
+  .journey-grid,
+  .home-recital-grid,
+  .showcase-grid,
+  .timeline,
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .section-heading-row {
+    gap: 1rem;
+  }
+
+  .section-heading-row .text-link {
+    align-self: flex-start;
+  }
+
+  .form-pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+
+  .filter-bar {
+    gap: 0.45rem;
+  }
+
+  .filter-bar button,
+  .showcase-filter-btn {
+    min-height: 44px;
+  }
+
+  .course-detail-card > a {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand {
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .brand-logo-emblem {
+    width: 32px;
+    height: 38px;
+  }
+
+  .brand strong {
+    font-size: 0.88rem;
+  }
+
+  .brand small {
+    font-size: 0.5rem;
+  }
+
+  .hero-slide-title {
+    font-size: clamp(1.7rem, 9vw, 2.15rem);
+  }
+
+  .hero-kicker-row {
+    gap: 0.5rem;
+  }
+
+  .journey-card,
+  .home-outcome-card,
+  .learning-path-card,
+  .course-card,
+  .course-detail-card,
+  .timeline article,
+  .showcase-card,
+  .recital-card,
+  .contact-panel,
+  .faq-aside,
+  .admission-form,
+  .lead-form {
+    padding: 1.2rem;
+  }
+
+  .enrollment-band,
+  .jesus-panel {
+    padding: 1.35rem 1rem;
+  }
+
+  .footer-legal-links {
+    gap: 0.5rem;
+  }
+
+  .media-modal-title {
+    font-size: 1rem;
+  }
+}
+
+/* Prefer open editorial lists for information; reserve cards for choices and media. */
+.feature-list,
+.support-list,
+.proof-panel,
+.lesson-flow {
+  gap: 0;
+}
+
+.feature-row,
+.support-item,
+.proof-panel > div,
+.lesson-flow > div {
+  padding: 1.15rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.feature-row:first-child,
+.support-item:first-child,
+.proof-panel > div:first-child,
+.lesson-flow > div:first-child {
+  padding-top: 0;
+}
+
+.feature-row:last-child,
+.support-item:last-child,
+.proof-panel > div:last-child,
+.lesson-flow > div:last-child {
+  border-bottom: 0;
+}
+
+.feature-row:hover,
+.support-item:hover,
+.proof-panel > div:hover,
+.lesson-flow > div:hover {
+  transform: none;
+  border-color: var(--line);
+  background: transparent;
+  box-shadow: none;
+}
+
+.journey-grid {
+  gap: 0;
+}
+
+.journey-card {
+  min-height: 0;
+  padding: 0 1.5rem;
+  border: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.journey-card:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.journey-card::before {
+  display: none;
+}
+
+.journey-card:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.journey-card h3 {
+  margin: 0;
+}
+
+.timeline {
+  gap: 0;
+}
+
+.timeline article,
+.timeline article:nth-child(1),
+.timeline article:nth-child(2),
+.timeline article:nth-child(3) {
+  min-height: 0;
+  justify-content: flex-start;
+  gap: 0.9rem;
+  padding: 0 1.5rem;
+  border: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.timeline article:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.timeline article:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.timeline article > svg {
+  color: var(--forest);
+}
+
+.timeline article h2 {
+  margin: 0;
+}
+
+.timeline article p {
+  margin-top: 0;
+}
+
+.home-outcome-card,
+.home-outcome-card.fellowship-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.home-outcome-card:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.home-outcome-card svg {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.outcomes-grid {
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.legal-document {
+  gap: 0;
+}
+
+.legal-block {
+  padding: 1.6rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.legal-document > .legal-block:first-child {
+  padding-top: 0;
+}
+
+.legal-document > .legal-block:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .timeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline article,
+  .timeline article:nth-child(1),
+  .timeline article:nth-child(2),
+  .timeline article:nth-child(3) {
+    padding: 1.35rem 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .timeline article:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .journey-card,
+  .journey-card + .journey-card {
+    min-height: 0;
+    padding: 1.1rem 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .journey-card:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .home-outcome-card + .home-outcome-card {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .journey-grid,
+  .course-strip,
+  .home-recital-grid,
+  .showcase-grid,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .journey-grid,
+  .course-strip,
+  .home-recital-grid,
+  .showcase-grid,
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-heading-row > .text-link {
+    align-items: flex-start;
+    flex: 0 1 auto;
+  }
+
+  .section-heading-row > .text-link svg {
+    margin-top: 0.2rem;
   }
 }

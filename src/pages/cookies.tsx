@@ -13,7 +13,7 @@ export default function CookiesPage() {
       <PageHero
         eyebrow="Privacy & Compliance"
         title="Cookie Policy"
-        copy="Learn how ProsperWork Music Concepts uses cookies and local storage to provide a seamless, secure browsing experience."
+        copy="Learn how this site stores your consent preference and what happens when you open an external service."
       />
 
       <section className="page-wrap content-section">
@@ -21,42 +21,34 @@ export default function CookiesPage() {
           <div className="legal-block">
             <p className="legal-date">Last Updated: September 2026</p>
             <p>
-              This Cookie Policy explains how <strong>{SCHOOL_NAME}</strong>{" "}
-              ("we," "us," or "our") uses cookies and similar technologies when
-              you visit our website. We believe in total transparency and
-              keeping data collection to the absolute minimum necessary to
-              deliver high-quality music education.
+              This policy explains how <strong>{SCHOOL_NAME}</strong> ("we,"
+              "us," or "our") uses browser storage on this website. We keep
+              collection to a minimum: the site stores your cookie-banner
+              choice in local storage so it does not need to ask again on every
+              visit.
             </p>
           </div>
 
           <div className="legal-block">
             <h2>1. What Are Cookies?</h2>
             <p>
-              Cookies are small text files placed on your computer, tablet, or
-              mobile device by websites you visit. They are widely used to
-              ensure websites function properly, remember user preferences, and
-              provide basic analytics.
+              Cookies are small text files that websites can save in your
+              browser. This site currently uses local storage—not a tracking
+              cookie—to remember your choice in the cookie-preference banner.
             </p>
           </div>
 
           <div className="legal-block">
-            <h2>2. Types of Cookies We Use</h2>
+            <h2>2. Storage used by this site</h2>
             <ul>
               <li>
-                <strong>Strictly Necessary Cookies:</strong> Essential for core
-                website operations, page routing, and security. Without these,
-                basic features of the website cannot function properly.
+                <strong>Consent preference:</strong> The site stores the choice
+                you make in the banner in your browser’s local storage. It is
+                used only to remember that choice.
               </li>
               <li>
-                <strong>Preference Cookies:</strong> Used to remember choices
-                you make (such as cookie consent preferences) to deliver a
-                consistent experience across visits.
-              </li>
-              <li>
-                <strong>Anonymous Analytics:</strong> We may use basic,
-                anonymized metrics to understand site traffic patterns and
-                improve our course catalog and navigation. We do not sell or
-                monetize your browsing information.
+                This site does not currently load analytics or advertising
+                trackers.
               </li>
             </ul>
           </div>
@@ -64,19 +56,19 @@ export default function CookiesPage() {
           <div className="legal-block">
             <h2>3. Third-Party Services</h2>
             <p>
-              When you interact with integrated external features (such as
-              WhatsApp for booking trial assessments, or external video lesson
-              platforms), those third-party services may place their own cookies
-              subject to their respective policies.
+              If you follow a link to a service such as WhatsApp, that service
+              may use its own cookies or similar technologies. Its own privacy
+              and cookie policies apply once you visit the external service.
             </p>
           </div>
 
           <div className="legal-block">
             <h2>4. Managing and Disabling Cookies</h2>
             <p>
-              You can choose to accept or decline non-essential cookies via our
-              on-site cookie banner. You can also configure your web browser
-              settings to block or delete cookies at any time:
+              The banner records your selected preference in this browser.
+              This site currently has no analytics or advertising cookies for
+              that choice to enable. You can clear the saved preference by
+              clearing this site’s stored data in your browser settings:
             </p>
             <ul>
               <li>
@@ -97,8 +89,9 @@ export default function CookiesPage() {
               </li>
             </ul>
             <p>
-              Please note that disabling necessary cookies may affect the visual
-              display and functionality of certain website elements.
+              Clearing the preference will cause the banner to appear again on
+              a later visit. Blocking cookies does not disable the site’s
+              current core features.
             </p>
           </div>
 

@@ -45,8 +45,7 @@ export function CookieBanner() {
             <span className="cookie-banner-title">Cookie Preferences</span>
           </div>
           <p className="cookie-banner-desc">
-            We use cookies to secure and enhance your learning experience. Read
-            our{" "}
+            We store your consent choice in this browser. Read our{" "}
             <Link href="/cookies" className="cookie-policy-link">
               Cookie Policy
             </Link>{" "}

@@ -13,10 +13,13 @@ import { Link } from "wouter";
 
 import { ContactMiniForm, SectionIntro } from "@/components/site/page-blocks";
 import { HeroSlideshow } from "@/components/site/hero-slideshow";
-import { courses, getWhatsAppLink } from "@/lib/site-data";
+import { courses, showcaseMedia } from "@/lib/site-data";
 
 export default function HomePage() {
-  const featuredCourses = courses.slice(0, 6);
+  const featuredCourses = courses.slice(0, 3);
+  const featuredRecitals = showcaseMedia
+    .filter((item) => item.type === "video" && item.category === "recitals")
+    .slice(0, 3);
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function HomePage() {
               copy="The first step is simple. We learn where the student is, match the right instructor, and build from there."
             />
             <Link className="text-link" href="/how-it-works">
-              See the full process
+              <span>See the full process</span>
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -172,11 +175,17 @@ export default function HomePage() {
 
       <section className="page-section tinted">
         <div className="page-wrap">
-          <SectionIntro
-            eyebrow="Courses"
-            title="Choose the track that matches the learner."
-            copy="Every course has a focused pathway, but the instructor adjusts the lesson flow to the student's pace."
-          />
+          <div className="section-heading-row">
+            <SectionIntro
+              eyebrow="Courses"
+              title="Choose the track that matches the learner."
+              copy="Every course has a focused pathway, but the instructor adjusts the lesson flow to the student's pace."
+            />
+            <Link className="text-link" href="/courses">
+              <span>Browse all {courses.length} courses</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
           <div className="course-strip">
             {featuredCourses.map((course) => (
               <Link href="/courses" className="course-card" key={course.id}>
@@ -268,55 +277,43 @@ export default function HomePage() {
               copy="From introductory exercises to full worship pieces and classical standards, see the results of steady practice and 1-on-1 coaching."
             />
             <Link className="text-link" href="/showcase">
-              View all video recitals
+              <span>Browse all showcases and media</span>
               <ArrowRight size={16} />
             </Link>
           </div>
 
           <div className="home-recital-grid">
-            {[
-              {
-                title: "Deborah Mordi: Saxophone Solo Recital",
-                student: "Deborah Mordi",
-                instrument: "Saxophone",
-                duration: "0:26",
-                img: "/images/showcase/video-thumb-deborah-recital.jpg",
-              },
-              {
-                title: "Deborah Mordi: Student Journey & Experience",
-                student: "Deborah Mordi (Student Testimonial)",
-                instrument: "Student Story",
-                duration: "1:03",
-                img: "/images/showcase/video-thumb-deborah-testimonial.jpg",
-              },
-              {
-                title: "Junior Saxophone Solo Performance",
-                student: "Junior Saxophone Student",
-                instrument: "Saxophone",
-                duration: "0:15",
-                img: "/images/showcase/video-thumb-student-sax-performance.jpg",
-              },
-            ].map((recital) => (
+            {featuredRecitals.map((recital) => (
               <Link
                 href="/showcase"
-                key={recital.title}
+                key={recital.id}
                 className="recital-card"
               >
                 <div className="recital-thumb">
-                  <img src={recital.img} alt={recital.title} loading="lazy" />
+                  <img
+                    src={recital.imageSrc}
+                    alt={recital.title}
+                    loading="lazy"
+                  />
                   <div className="recital-play-badge">
                     <span className="play-circle">
                       <ArrowRight size={18} />
                     </span>
                   </div>
                   <span className="recital-tag">{recital.instrument}</span>
-                  <span className="recital-duration">{recital.duration}</span>
+                  {recital.videoDuration && (
+                    <span className="recital-duration">
+                      {recital.videoDuration}
+                    </span>
+                  )}
                 </div>
                 <div className="recital-body">
                   <h3>{recital.title}</h3>
-                  <span className="recital-performer">{recital.student}</span>
+                  <span className="recital-performer">
+                    {recital.performerOrStudent}
+                  </span>
                   <span className="recital-link">
-                    Watch Recital <ArrowRight size={14} />
+                    View in gallery <ArrowRight size={14} />
                   </span>
                 </div>
               </Link>

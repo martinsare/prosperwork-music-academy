@@ -25,7 +25,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Admissions"
         title="Book a FREE one-on-one trial assessment."
-        copy="Prospective students can message the academy directly via WhatsApp or through the Instagram page to get started."
+        copy="Use the admissions form to send a WhatsApp enquiry, or contact the academy directly by phone or email."
       />
 
       <section className="page-section">

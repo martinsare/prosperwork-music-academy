@@ -230,7 +230,7 @@ export const academyImages = {
   violinStudent: "/images/showcase/showcase-violin-student.jpg",
   guitarStudent: "/images/showcase/showcase-guitar-student.jpg",
   jesusKids: "/images/showcase/showcase-jesus-kids.jpg",
-  annualAwards: "/images/showcase/showcase-annual-awards.jpg",
+  annualAwards: "/images/showcase/video-thumb-deborah-recital.jpg",
   onlineSession: "/images/showcase/showcase-online-session.jpg",
   vocalCoaching: "/images/showcase/showcase-vocal-coaching.jpg",
 };
@@ -384,7 +384,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Annual Competition Winners",
     caption:
       "Recognizing student diligence with certificates, MUSON preparation commendations, and performance prizes.",
-    imageSrc: "/images/showcase/showcase-annual-awards.jpg",
+    imageSrc: academyImages.annualAwards,
   },
   {
     id: "media-11",
