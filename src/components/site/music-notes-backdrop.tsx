@@ -14,12 +14,13 @@ interface NoteParticle {
   color: string;
 }
 
+// Delicate, subtle, elegant translucent brand tones
 const NOTE_COLORS = [
-  "rgba(19, 91, 69, 0.40)",   // Forest
-  "rgba(143, 202, 171, 0.52)", // Mint/Coral
-  "rgba(16, 185, 129, 0.45)",  // Bright Emerald
-  "rgba(203, 229, 214, 0.60)", // Sun/Sage
-  "rgba(5, 150, 105, 0.42)",   // Deep Jade
+  "rgba(19, 91, 69, 0.22)",    // Soft Forest
+  "rgba(143, 202, 171, 0.28)", // Pale Mint
+  "rgba(16, 185, 129, 0.22)",  // Soft Emerald
+  "rgba(94, 113, 104, 0.20)",  // Muted Sage
+  "rgba(5, 150, 105, 0.24)",   // Translucent Jade
 ];
 
 function NoteSvg({
@@ -41,14 +42,14 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.9"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="5.5" cy="17.5" r="3.5" fill={color} />
-          <circle cx="18.5" cy="14.5" r="3.5" fill={color} />
-          <path d="M9 17.5V5l13-3v12.5" />
-          <path d="M9 9l13-3" />
+          <circle cx="5.5" cy="17.5" r="3" fill={color} />
+          <circle cx="18.5" cy="14.5" r="3" fill={color} />
+          <path d="M8.5 17.5V5l13-3v12.5" />
+          <path d="M8.5 9l13-3" />
         </svg>
       );
     case 1:
@@ -60,24 +61,24 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.9"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="6" cy="18" r="4" fill={color} />
-          <path d="M10 18V3c3 0 6 2 6 5s-3 3-6 3" />
+          <circle cx="6" cy="18" r="3.5" fill={color} />
+          <path d="M9.5 18V3c3 0 5.5 1.8 5.5 4.5s-2.5 3-5.5 3" />
         </svg>
       );
     case 2:
       // Treble Clef 𝄞
       return (
         <svg
-          width={size * 1.15}
-          height={size * 1.4}
+          width={size * 1.1}
+          height={size * 1.3}
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.7"
+          strokeWidth="1.4"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -89,12 +90,12 @@ function NoteSvg({
       // Musical Sharp ♯
       return (
         <svg
-          width={size * 0.9}
-          height={size * 0.9}
+          width={size * 0.85}
+          height={size * 0.85}
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="2.1"
+          strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -113,15 +114,15 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.9"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
           <ellipse
             cx="7"
             cy="17"
-            rx="4"
-            ry="3"
+            rx="3.5"
+            ry="2.6"
             fill={color}
             transform="rotate(-20 7 17)"
           />
@@ -138,13 +139,13 @@ function NoteSvg({
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.9"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="6" cy="18" r="3.5" fill={color} />
-          <path d="M9.5 18V4c4 0 7 1.5 7 4.5" />
-          <path d="M9.5 9c3.5 0 6 1 6 3.5" />
+          <circle cx="6" cy="18" r="3" fill={color} />
+          <path d="M9 18V4c3.5 0 6 1.3 6 4" />
+          <path d="M9 9c3 0 5.5 1 5.5 3" />
         </svg>
       );
   }
@@ -222,8 +223,8 @@ export function MusicNotesBackdrop() {
         const noteCenterY = rect.top + rect.height / 2;
         const distance = Math.hypot(clickX - noteCenterX, clickY - noteCenterY);
 
-        // Generous, intuitive hit radius (45px)
-        if (distance <= Math.max(rect.width * 0.9, 45)) {
+        // Generous, intuitive hit radius (38px)
+        if (distance <= Math.max(rect.width * 0.9, 38)) {
           handleNoteBurst(id);
         }
       });
@@ -235,31 +236,31 @@ export function MusicNotesBackdrop() {
     };
   }, [handleNoteBurst, burstIds]);
 
-  // Generate harmonious horizontal melodic streams
+  // Generate harmonious horizontal melodic streams with delicate size & opacity
   const notes = useMemo<NoteParticle[]>(() => {
-    const tracks = [12, 24, 38, 52, 65, 78, 88]; // 7 melodic stave levels
+    const tracks = [12, 26, 40, 54, 68, 80, 90]; // 7 melodic stave levels
     const items: NoteParticle[] = [];
     let id = 0;
 
     tracks.forEach((trackPercent, trackIdx) => {
       const countInTrack = 3;
       for (let i = 0; i < countInTrack; i++) {
-        const duration = 20 + ((id * 4) % 16); // 20s to 36s
+        const duration = 22 + ((id * 4) % 18); // 22s to 40s (slow, calm pace)
         const delay = -(
           i * (duration / countInTrack) +
-          ((trackIdx * 3.1) % duration)
+          ((trackIdx * 3.4) % duration)
         );
 
         items.push({
           id: id++,
           type: (id + trackIdx) % 6,
-          top: trackPercent + ((id % 3) * 3 - 3),
-          size: 24 + ((id * 6) % 20), // 24px to 44px
+          top: trackPercent + ((id % 3) * 2 - 2),
+          size: 15 + ((id * 5) % 11), // 15px to 25px (delicate & proportional)
           duration,
           delay,
-          opacity: 0.42 + (id % 3) * 0.15,
-          rotation: -12 + ((id * 17) % 25),
-          waveAmplitude: 15 + ((id * 7) % 25),
+          opacity: 0.18 + (id % 3) * 0.08, // 0.18 to 0.34 (subtle & soft)
+          rotation: -10 + ((id * 15) % 20),
+          waveAmplitude: 12 + ((id * 5) % 18), // 12px to 30px
           color: NOTE_COLORS[(id + trackIdx) % NOTE_COLORS.length],
         });
       }
