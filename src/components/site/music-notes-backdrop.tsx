@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback } from "react";
+import { playNotePopSound } from "@/lib/instrument-audio";
 
 interface NoteParticle {
   id: number;
@@ -14,11 +15,11 @@ interface NoteParticle {
 }
 
 const NOTE_COLORS = [
-  "rgba(19, 91, 69, 0.22)",   // Forest
-  "rgba(143, 202, 171, 0.32)", // Mint/Coral
-  "rgba(16, 185, 129, 0.25)",  // Bright Emerald
-  "rgba(203, 229, 214, 0.40)", // Sun/Sage
-  "rgba(5, 150, 105, 0.24)",   // Deep Jade
+  "rgba(19, 91, 69, 0.35)",   // Forest
+  "rgba(143, 202, 171, 0.45)", // Mint/Coral
+  "rgba(16, 185, 129, 0.40)",  // Bright Emerald
+  "rgba(203, 229, 214, 0.55)", // Sun/Sage
+  "rgba(5, 150, 105, 0.38)",   // Deep Jade
 ];
 
 function NoteSvg({
@@ -149,7 +150,49 @@ function NoteSvg({
   }
 }
 
+// Sparkle Burst Particle Component
+function SparkleBurst({ color }: { color: string }) {
+  return (
+    <div className="note-sparkle-burst">
+      <span className="burst-ring" style={{ borderColor: color }} />
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+        <span
+          key={i}
+          className="burst-spark"
+          style={{
+            backgroundColor: color,
+            ["--spark-angle" as string]: `${angle}deg`,
+          }}
+        />
+      ))}
+      <span className="burst-flash" />
+    </div>
+  );
+}
+
 export function MusicNotesBackdrop() {
+  const [burstIds, setBurstIds] = useState<Set<number>>(new Set());
+
+  // Handle interactive touch / click / hover pop
+  const handleNoteBurst = useCallback((id: number) => {
+    if (burstIds.has(id)) return;
+
+    // Play pleasant pentatonic chime
+    playNotePopSound();
+
+    // Mark as bursting
+    setBurstIds((prev) => new Set(prev).add(id));
+
+    // Respawns smoothly after 3.2s
+    setTimeout(() => {
+      setBurstIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    }, 3200);
+  }, [burstIds]);
+
   // Generate harmonious horizontal melodic streams
   const notes = useMemo<NoteParticle[]>(() => {
     const tracks = [10, 22, 36, 50, 64, 78, 88]; // 7 melodic stave levels
@@ -157,23 +200,21 @@ export function MusicNotesBackdrop() {
     let id = 0;
 
     tracks.forEach((trackPercent, trackIdx) => {
-      // 3-4 notes per track with staggered delays to populate the entire stream
       const countInTrack = 3;
       for (let i = 0; i < countInTrack; i++) {
-        const duration = 20 + ((id * 4) % 16); // 20s to 36s (graceful melodic tempo)
-        // Spread staggered delay across the full duration
+        const duration = 20 + ((id * 4) % 16); // 20s to 36s
         const delay = -((i * (duration / countInTrack)) + (trackIdx * 3.1) % duration);
         
         items.push({
           id: id++,
           type: (id + trackIdx) % 6,
-          top: trackPercent + ((id % 3) * 3 - 3), // slight organic offset
-          size: 20 + ((id * 6) % 22), // 20px to 42px
+          top: trackPercent + ((id % 3) * 3 - 3),
+          size: 22 + ((id * 6) % 22), // 22px to 44px
           duration,
           delay,
-          opacity: 0.35 + ((id % 3) * 0.15),
-          rotation: -12 + ((id * 17) % 25), // -12deg to +13deg
-          waveAmplitude: 15 + ((id * 7) % 25), // 15px to 40px sinusoidal pitch wave
+          opacity: 0.38 + ((id % 3) * 0.15),
+          rotation: -12 + ((id * 17) % 25),
+          waveAmplitude: 15 + ((id * 7) % 25),
           color: NOTE_COLORS[(id + trackIdx) % NOTE_COLORS.length],
         });
       }
@@ -183,23 +224,36 @@ export function MusicNotesBackdrop() {
   }, []);
 
   return (
-    <div className="music-notes-canvas melodic-stream" aria-hidden="true">
-      {notes.map((note) => (
-        <div
-          key={note.id}
-          className="stream-note-particle"
-          style={{
-            top: `${note.top}%`,
-            animationDuration: `${note.duration}s`,
-            animationDelay: `${note.delay}s`,
-            opacity: note.opacity,
-            ["--wave-amp" as string]: `${note.waveAmplitude}px`,
-            ["--rot-start" as string]: `${note.rotation}deg`,
-          }}
-        >
-          <NoteSvg type={note.type} size={note.size} color={note.color} />
-        </div>
-      ))}
+    <div className="music-notes-canvas melodic-stream" aria-hidden="false">
+      {notes.map((note) => {
+        const isBursting = burstIds.has(note.id);
+
+        return (
+          <div
+            key={note.id}
+            className={`stream-note-particle ${isBursting ? "bursting" : ""}`}
+            style={{
+              top: `${note.top}%`,
+              animationDuration: `${note.duration}s`,
+              animationDelay: `${note.delay}s`,
+              opacity: isBursting ? 1 : note.opacity,
+              ["--wave-amp" as string]: `${note.waveAmplitude}px`,
+              ["--rot-start" as string]: `${note.rotation}deg`,
+            }}
+            onClick={() => handleNoteBurst(note.id)}
+            onPointerDown={() => handleNoteBurst(note.id)}
+            title="Touch or click to pop note!"
+          >
+            {isBursting ? (
+              <SparkleBurst color={note.color} />
+            ) : (
+              <div className="note-touch-target">
+                <NoteSvg type={note.type} size={note.size} color={note.color} />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
