@@ -243,11 +243,29 @@ export function MusicNotesBackdrop() {
             onClick={() => handleNoteBurst(note.id)}
             onPointerDown={() => handleNoteBurst(note.id)}
             title="Touch or click to pop note!"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNoteBurst(note.id);
+            }}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              handleNoteBurst(note.id);
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label="Interactive Music Note"
           >
             {isBursting ? (
               <SparkleBurst color={note.color} />
             ) : (
               <div className="note-touch-target">
+              <div
+                className="note-touch-target"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNoteBurst(note.id);
+                }}
+              >
                 <NoteSvg type={note.type} size={note.size} color={note.color} />
               </div>
             )}
