@@ -2029,12 +2029,6 @@ textarea:focus {
   background: var(--forest);
 }
 
-@media (max-width: 700px) {
-  .page-hero h1 {
-    font-size: clamp(2.6rem, 12vw, 4.8rem);
-  }
-}
-@media (max-width: 700px) {
 @media (max-width: 768px) {
   .page-wrap,
   .nav-shell,
@@ -2053,7 +2047,6 @@ textarea:focus {
   .timeline,
   .lesson-flow,
   .form-pair,
-  .footer-grid {
   .footer-grid,
   .split-layout,
   .about-layout,
@@ -2085,7 +2078,6 @@ textarea:focus {
     padding-block: 3.5rem 4.25rem;
   }
   .page-hero h1 {
-    font-size: clamp(2.35rem, 13vw, 4.8rem);
     font-size: clamp(2.35rem, 11vw, 4.2rem);
   }
   .page-hero-media {
@@ -2485,7 +2477,6 @@ textarea:focus {
   }
 }
 
-@media (max-width: 700px) {
 @media (max-width: 768px) {
   .journey-grid,
   .outcomes-grid {
@@ -2495,10 +2486,6 @@ textarea:focus {
 
   .journey-card,
   .journey-card + .journey-card {
-    min-height: 0;
-    padding: 1.35rem 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
     min-height: auto;
     padding: 1.5rem;
     border: 1px solid var(--line);
@@ -2507,23 +2494,13 @@ textarea:focus {
     box-shadow: var(--card-shadow);
   }
 
-  .journey-card:last-child {
-    border-bottom: 0;
-  }
-
-  .journey-card h3 {
-    margin-top: 0.5rem;
-  }
-
   .outcome-card {
-    min-height: 270px;
     min-height: auto;
     padding: 1.75rem;
     border-radius: 16px;
   }
 
   .outcome-card > svg {
-    margin-bottom: 2rem;
     margin-bottom: 1.25rem;
   }
 }
