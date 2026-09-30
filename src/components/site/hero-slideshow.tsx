@@ -4,7 +4,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe2,
-  Music,
+  Play,
 } from "lucide-react";
 import { Link } from "wouter";
 import { getWhatsAppLink } from "@/lib/site-data";
@@ -262,24 +262,28 @@ export function HeroSlideshow() {
               {current.eyebrow}
             </span>
 
-            {/* Interactive Instrument Audio Preview Pill */}
+            {/* Interactive Instrument Audio Preview Play Button */}
             <button
               type="button"
               onClick={playPreviewDirectly}
-              className={`hero-preview-pill ${
+              className={`hero-play-preview-btn ${
                 isPlayingCurrent ? "playing" : ""
               }`}
-              title={`Play ${current.instrument} audio preview`}
-              aria-label={`Play ${current.instrument} audio preview`}
+              title={`Listen to ${current.instrument} audio preview`}
+              aria-label={`Listen to ${current.instrument} audio preview`}
             >
-              <Music size={13} />
-              <span>Hear {current.instrument}</span>
-              {isPlayingCurrent && (
+              {isPlayingCurrent ? (
                 <span className="hero-sound-equalizer mini" aria-hidden="true">
                   <span className="bar playing" />
                   <span className="bar playing" />
                   <span className="bar playing" />
                 </span>
+              ) : (
+                <Play
+                  size={13}
+                  fill="currentColor"
+                  style={{ marginLeft: "1px" }}
+                />
               )}
             </button>
           </div>
