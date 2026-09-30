@@ -122,7 +122,7 @@
   position: relative;
 }
 
-/* Ambient Floating Music Notes Layer */
+/* Ambient Melodic Music Notes Stream (Left-to-Right Live Stave Flow) */
 .music-notes-canvas {
   position: fixed;
   inset: 0;
@@ -133,44 +133,50 @@
   overflow: hidden;
 }
 
-.floating-note-particle {
+.stream-note-particle {
   position: absolute;
-  bottom: -60px;
+  left: -80px;
   will-change: transform, opacity;
-  animation: floatMusicNote linear infinite;
+  animation: streamMusicNote linear infinite;
   pointer-events: none;
-  filter: drop-shadow(0 2px 10px rgba(19, 91, 69, 0.15));
+  filter: drop-shadow(0 2px 10px rgba(19, 91, 69, 0.16));
 }
 
-@keyframes floatMusicNote {
+@keyframes streamMusicNote {
   0% {
-    transform: translate3d(0, 0, 0) rotate(var(--initial-rot, 0deg)) scale(0.85);
+    transform: translate3d(0, 0, 0) rotate(var(--rot-start, -6deg)) scale(0.9);
     opacity: 0;
   }
-  15% {
-    opacity: 0.75;
-    transform: translate3d(calc(var(--sway-x, 30px) * 0.5), -20vh, 0)
-      rotate(calc(var(--initial-rot, 0deg) + 18deg)) scale(1);
+  6% {
+    opacity: 0.85;
   }
-  50% {
-    transform: translate3d(calc(var(--sway-x, 30px) * -1), -55vh, 0)
-      rotate(calc(var(--initial-rot, 0deg) - 20deg)) scale(1.08);
+  25% {
+    transform: translate3d(calc(28vw + 20px), calc(var(--wave-amp, 20px) * -1), 0)
+      rotate(calc(var(--rot-start, -6deg) + 14deg)) scale(1.04);
     opacity: 0.95;
   }
-  85% {
-    opacity: 0.7;
-    transform: translate3d(calc(var(--sway-x, 30px) * 0.8), -90vh, 0)
-      rotate(calc(var(--initial-rot, 0deg) + 30deg)) scale(0.95);
+  50% {
+    transform: translate3d(calc(55vw + 40px), calc(var(--wave-amp, 20px) * 0.9), 0)
+      rotate(calc(var(--rot-start, -6deg) - 10deg)) scale(1.08);
+    opacity: 0.95;
+  }
+  75% {
+    transform: translate3d(calc(82vw + 60px), calc(var(--wave-amp, 20px) * -0.8), 0)
+      rotate(calc(var(--rot-start, -6deg) + 12deg)) scale(0.98);
+    opacity: 0.85;
+  }
+  94% {
+    opacity: 0.75;
   }
   100% {
-    transform: translate3d(0, -115vh, 0)
-      rotate(calc(var(--initial-rot, 0deg) + 45deg)) scale(0.8);
+    transform: translate3d(calc(100vw + 120px), 0, 0)
+      rotate(calc(var(--rot-start, -6deg) + 18deg)) scale(0.9);
     opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .floating-note-particle {
+  .stream-note-particle {
     animation: none;
     display: none;
   }

@@ -3,26 +3,34 @@ import React, { useMemo } from "react";
 interface NoteParticle {
   id: number;
   type: number;
-  left: number; // percentage
+  top: number; // percentage from top of viewport
   size: number; // px
-  duration: number; // seconds
-  delay: number; // seconds
+  duration: number; // seconds for full left-to-right traverse
+  delay: number; // seconds (negative so immediately active)
   opacity: number;
   rotation: number; // deg
-  swayDistance: number; // px
+  waveAmplitude: number; // vertical pitch wave height in px
   color: string;
 }
 
 const NOTE_COLORS = [
-  "rgba(19, 91, 69, 0.18)",   // Forest
-  "rgba(143, 202, 171, 0.28)", // Mint/Coral
-  "rgba(52, 211, 153, 0.22)",  // Bright Emerald
-  "rgba(203, 229, 214, 0.35)", // Sun/Sage
-  "rgba(16, 185, 129, 0.20)",  // Soft Jade
+  "rgba(19, 91, 69, 0.22)",   // Forest
+  "rgba(143, 202, 171, 0.32)", // Mint/Coral
+  "rgba(16, 185, 129, 0.25)",  // Bright Emerald
+  "rgba(203, 229, 214, 0.40)", // Sun/Sage
+  "rgba(5, 150, 105, 0.24)",   // Deep Jade
 ];
 
-function NoteSvg({ type, size, color }: { type: number; size: number; color: string }) {
-  switch (type % 5) {
+function NoteSvg({
+  type,
+  size,
+  color,
+}: {
+  type: number;
+  size: number;
+  color: string;
+}) {
+  switch (type % 6) {
     case 0:
       // Beamed eighth notes ♫
       return (
@@ -32,7 +40,7 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.75"
+          strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -51,7 +59,7 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.75"
+          strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -60,15 +68,15 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
         </svg>
       );
     case 2:
-      // Treble clef silhouette / stylized music mark
+      // Treble Clef 𝄞
       return (
         <svg
           width={size * 1.1}
-          height={size * 1.3}
+          height={size * 1.35}
           viewBox="0 0 24 24"
           fill="none"
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
@@ -77,7 +85,7 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
         </svg>
       );
     case 3:
-      // Musical Sharp / Harmonious Chord ♯
+      // Musical Sharp ♯
       return (
         <svg
           width={size * 0.9}
@@ -96,8 +104,7 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
         </svg>
       );
     case 4:
-    default:
-      // Quarter note with ring
+      // Quarter note with stem ♩
       return (
         <svg
           width={size}
@@ -109,50 +116,85 @@ function NoteSvg({ type, size, color }: { type: number; size: number; color: str
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <ellipse cx="7" cy="17" rx="4" ry="3" fill={color} transform="rotate(-20 7 17)" />
+          <ellipse
+            cx="7"
+            cy="17"
+            rx="4"
+            ry="3"
+            fill={color}
+            transform="rotate(-20 7 17)"
+          />
           <path d="M10.5 16V4" />
+        </svg>
+      );
+    case 5:
+    default:
+      // Double sixteenth note flag ♬
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={color}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="6" cy="18" r="3.5" fill={color} />
+          <path d="M9.5 18V4c4 0 7 1.5 7 4.5" />
+          <path d="M9.5 9c3.5 0 6 1 6 3.5" />
         </svg>
       );
   }
 }
 
 export function MusicNotesBackdrop() {
-  // Generate a deterministic set of floating notes distributed across the screen
+  // Generate harmonious horizontal melodic streams
   const notes = useMemo<NoteParticle[]>(() => {
-    const count = 22; // Well-balanced density without cluttering UI
+    const tracks = [10, 22, 36, 50, 64, 78, 88]; // 7 melodic stave levels
     const items: NoteParticle[] = [];
+    let id = 0;
 
-    for (let i = 0; i < count; i++) {
-      items.push({
-        id: i,
-        type: i % 5,
-        left: (i * 100) / count + (Math.sin(i * 99) * 3), // distributed across 0-100%
-        size: 20 + ((i * 7) % 24), // 20px to 44px
-        duration: 16 + ((i * 5) % 18), // 16s to 34s (smooth, gentle float)
-        delay: -((i * 3.7) % 28), // negative delay so they are immediately visible in-flight
-        opacity: 0.35 + ((i % 4) * 0.15),
-        rotation: (i * 45) % 360,
-        swayDistance: 25 + ((i * 11) % 45), // 25px to 70px horizontal wave
-        color: NOTE_COLORS[i % NOTE_COLORS.length],
-      });
-    }
+    tracks.forEach((trackPercent, trackIdx) => {
+      // 3-4 notes per track with staggered delays to populate the entire stream
+      const countInTrack = 3;
+      for (let i = 0; i < countInTrack; i++) {
+        const duration = 20 + ((id * 4) % 16); // 20s to 36s (graceful melodic tempo)
+        // Spread staggered delay across the full duration
+        const delay = -((i * (duration / countInTrack)) + (trackIdx * 3.1) % duration);
+        
+        items.push({
+          id: id++,
+          type: (id + trackIdx) % 6,
+          top: trackPercent + ((id % 3) * 3 - 3), // slight organic offset
+          size: 20 + ((id * 6) % 22), // 20px to 42px
+          duration,
+          delay,
+          opacity: 0.35 + ((id % 3) * 0.15),
+          rotation: -12 + ((id * 17) % 25), // -12deg to +13deg
+          waveAmplitude: 15 + ((id * 7) % 25), // 15px to 40px sinusoidal pitch wave
+          color: NOTE_COLORS[(id + trackIdx) % NOTE_COLORS.length],
+        });
+      }
+    });
 
     return items;
   }, []);
 
   return (
-    <div className="music-notes-canvas" aria-hidden="true">
+    <div className="music-notes-canvas melodic-stream" aria-hidden="true">
       {notes.map((note) => (
         <div
           key={note.id}
-          className="floating-note-particle"
+          className="stream-note-particle"
           style={{
-            left: `${note.left}%`,
+            top: `${note.top}%`,
             animationDuration: `${note.duration}s`,
             animationDelay: `${note.delay}s`,
             opacity: note.opacity,
-            ["--sway-x" as string]: `${note.swayDistance}px`,
-            ["--initial-rot" as string]: `${note.rotation}deg`,
+            ["--wave-amp" as string]: `${note.waveAmplitude}px`,
+            ["--rot-start" as string]: `${note.rotation}deg`,
           }}
         >
           <NoteSvg type={note.type} size={note.size} color={note.color} />
@@ -163,4 +205,3 @@ export function MusicNotesBackdrop() {
 }
 
 export default MusicNotesBackdrop;
-
