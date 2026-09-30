@@ -2622,7 +2622,6 @@ textarea:focus {
   }
 }
 
-
 /* Content Section & Legal Documents */
 .content-section {
   padding-block: clamp(3.5rem, 6vw, 6rem);
