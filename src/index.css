@@ -129,7 +129,7 @@
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 24;
+  z-index: 1;
   overflow: hidden;
 }
 
@@ -307,10 +307,17 @@
 main {
   flex: 1;
   position: relative;
-  z-index: 22;
+  z-index: 5;
 }
 
-/* Ensure all cards, buttons, forms, and interactive components sit in front of streaming notes */
+/* Ensure all sections, hero slideshow, mosaic, cards, and content sit cleanly in front of streaming background notes */
+.page-section,
+.journey-section,
+.accountability-section,
+.courses-section,
+.showcase-section,
+.recitals-section,
+.content-section,
 .course-card,
 .recital-card,
 .journey-card,
@@ -325,6 +332,7 @@ main {
 .jesus-panel,
 .contact-panel,
 .faq-aside,
+.page-hero,
 .page-hero-media,
 .showcase-photo-mosaic,
 .lead-form,
@@ -333,7 +341,7 @@ main {
 .hero-slideshow-container,
 .footer {
   position: relative;
-  z-index: 25;
+  z-index: 5;
 }
 
 .primary-link,
@@ -345,7 +353,7 @@ input,
 select,
 textarea {
   position: relative;
-  z-index: 28;
+  z-index: 10;
 }
 
 /* Structured, premium online academy system. */

@@ -216,6 +216,7 @@ export function MusicNotesBackdrop() {
         'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
           "video, iframe, audio, " +
           ".site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, " +
+          ".hero-slideshow-container, .hero-slide-bg, .hero-slide-images, " +
           ".course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, " +
           ".learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, " +
           ".faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic, .proof-panel div, .lesson-flow div"
