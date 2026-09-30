@@ -201,12 +201,17 @@ export function MusicNotesBackdrop() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // If user is clicking an active interactive button, link, form input, or modal control,
-      // let the control handle it without popping background notes!
-      const isControl = target.closest(
-        'button, a, input, select, textarea, [role="button"], video, iframe, audio, label, .media-modal-backdrop, .cookie-banner, .site-header, .faq-list button, .hero-preview-pill'
+      // If user tapped on ANY foreground card, modal, header, button, input, form, image, or dialog:
+      // notes sitting behind these elements are obscured and MUST NOT be clickable!
+      const isForegroundCover = target.closest(
+        'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
+        'video, iframe, audio, label, img, pre, code, ' +
+        '.site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, ' +
+        '.course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, ' +
+        '.learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, ' +
+        '.faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic, .proof-panel div, .lesson-flow div'
       );
-      if (isControl) return;
+      if (isForegroundCover) return;
 
       const clickX = e.clientX;
       const clickY = e.clientY;
@@ -217,14 +222,27 @@ export function MusicNotesBackdrop() {
         const rect = el.getBoundingClientRect();
         
         // Ensure note is currently visible within the viewport
-        if (rect.right < 0 || rect.left > window.innerWidth) return;
+        if (rect.right < 0 || rect.left > window.innerWidth || rect.bottom < 0 || rect.top > window.innerHeight) return;
 
         const noteCenterX = rect.left + rect.width / 2;
         const noteCenterY = rect.top + rect.height / 2;
         const distance = Math.hypot(clickX - noteCenterX, clickY - noteCenterY);
 
-        // Generous, intuitive hit radius (38px)
-        if (distance <= Math.max(rect.width * 0.9, 38)) {
+        // Generous, intuitive hit radius (32px)
+        if (distance <= Math.max(rect.width * 0.9, 32)) {
+          // Double check that the note center is not physically covered by a modal or card
+          const topElAtCenter = document.elementFromPoint(noteCenterX, noteCenterY);
+          if (topElAtCenter) {
+            const isOccluded = topElAtCenter.closest(
+              'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
+              '.site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, ' +
+              '.course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, ' +
+              '.learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, ' +
+              '.faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic'
+            );
+            if (isOccluded) return;
+          }
+
           handleNoteBurst(id);
         }
       });
