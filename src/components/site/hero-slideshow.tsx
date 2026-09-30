@@ -259,33 +259,36 @@ export function HeroSlideshow() {
           <div className="hero-kicker-row">
             <span key={`kicker-${current.id}`} className="hero-kicker">
               <Globe2 size={15} />
-              {current.eyebrow}
-            </span>
+              <span>{current.eyebrow}</span>
 
-            {/* Interactive Instrument Audio Preview Play Button */}
-            <button
-              type="button"
-              onClick={playPreviewDirectly}
-              className={`hero-play-preview-btn ${
-                isPlayingCurrent ? "playing" : ""
-              }`}
-              title={`Listen to ${current.instrument} audio preview`}
-              aria-label={`Listen to ${current.instrument} audio preview`}
-            >
-              {isPlayingCurrent ? (
-                <span className="hero-sound-equalizer mini" aria-hidden="true">
-                  <span className="bar playing" />
-                  <span className="bar playing" />
-                  <span className="bar playing" />
-                </span>
-              ) : (
-                <Play
-                  size={13}
-                  fill="currentColor"
-                  style={{ marginLeft: "1px" }}
-                />
-              )}
-            </button>
+              {/* Integrated Instrument Audio Preview Play Button */}
+              <button
+                type="button"
+                onClick={playPreviewDirectly}
+                className={`hero-inline-play-btn ${
+                  isPlayingCurrent ? "playing" : ""
+                }`}
+                title={`Listen to ${current.instrument} audio preview`}
+                aria-label={`Listen to ${current.instrument} audio preview`}
+              >
+                {isPlayingCurrent ? (
+                  <span
+                    className="hero-sound-equalizer mini"
+                    aria-hidden="true"
+                  >
+                    <span className="bar playing" />
+                    <span className="bar playing" />
+                    <span className="bar playing" />
+                  </span>
+                ) : (
+                  <Play
+                    size={11}
+                    fill="currentColor"
+                    style={{ marginLeft: "1px" }}
+                  />
+                )}
+              </button>
+            </span>
           </div>
 
           <h1 key={`title-${current.id}`} className="hero-slide-title">
