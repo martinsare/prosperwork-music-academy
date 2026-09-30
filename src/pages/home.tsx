@@ -223,12 +223,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 3-Photo Structured Mosaic (SFGS Pattern) */}
+          {/* 3-Photo Structured Mosaic (SFGS Pattern with authentic client lessons) */}
           <div className="showcase-photo-mosaic">
             <div className="mosaic-main">
               <img
-                src="/images/showcase/showcase-piano-lesson.jpg"
-                alt="1-on-1 Online Piano lesson in session"
+                src="/images/showcase/client-live-piano-lesson.jpg"
+                alt="1-on-1 Online Piano lesson with chord progression guidance"
                 loading="lazy"
                 className="mosaic-img"
               />
@@ -237,8 +237,8 @@ export default function HomePage() {
             <div className="mosaic-sub-grid">
               <div className="mosaic-sub">
                 <img
-                  src="/images/showcase/showcase-sax-recital.jpg"
-                  alt="Saxophone masterclass session"
+                  src="/images/showcase/client-sax-recital-deborah.jpg"
+                  alt="Saxophone student recital session"
                   loading="lazy"
                   className="mosaic-img"
                 />
@@ -246,12 +246,12 @@ export default function HomePage() {
               </div>
               <div className="mosaic-sub">
                 <img
-                  src="/images/showcase/showcase-drum-lesson.jpg"
-                  alt="Drum rhythm instruction"
+                  src="/images/showcase/client-live-guitar-class.jpg"
+                  alt="Live 1-on-1 guitar theory and fretboard class"
                   loading="lazy"
                   className="mosaic-img"
                 />
-                <span className="mosaic-tag">Drums & Rhythm</span>
+                <span className="mosaic-tag">Guitar Class</span>
               </div>
             </div>
           </div>
@@ -276,25 +276,25 @@ export default function HomePage() {
           <div className="home-recital-grid">
             {[
               {
-                title: "Sarah’s Classical Piano Recital: Ode to Joy",
-                student: "Sarah (Age 9)",
-                instrument: "Piano",
-                duration: "2:15",
-                img: "/images/showcase/video-thumb-piano-recital.jpg",
-              },
-              {
-                title: "Emmanuel’s Saxophone Melodic Tone & Solo",
-                student: "Emmanuel (Intermediate)",
+                title: "Deborah Mordi: Saxophone Solo Recital",
+                student: "Deborah Mordi",
                 instrument: "Saxophone",
-                duration: "3:40",
-                img: "/images/showcase/video-thumb-sax-solo.jpg",
+                duration: "0:26",
+                img: "/images/showcase/video-thumb-deborah-recital.jpg",
               },
               {
-                title: "Jesus Kids Praise & Scripture Recital",
-                student: "Children Fellowship",
-                instrument: "Choir & Keys",
-                duration: "4:10",
-                img: "/images/showcase/video-thumb-kids-praise.jpg",
+                title: "Deborah Mordi: Student Journey & Experience",
+                student: "Deborah Mordi (Student Testimonial)",
+                instrument: "Student Story",
+                duration: "1:03",
+                img: "/images/showcase/video-thumb-deborah-testimonial.jpg",
+              },
+              {
+                title: "Junior Saxophone Solo Performance",
+                student: "Junior Saxophone Student",
+                instrument: "Saxophone",
+                duration: "0:15",
+                img: "/images/showcase/video-thumb-student-sax-performance.jpg",
               },
             ].map((recital) => (
               <Link

@@ -220,13 +220,24 @@ export default function ShowcasePage() {
             </div>
 
             <div className="media-video-frame">
-              <iframe
-                src={activeVideo.videoUrl}
-                title={activeVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="video-iframe"
-              />
+              {activeVideo.videoUrl?.endsWith(".mp4") ? (
+                <video
+                  src={activeVideo.videoUrl}
+                  poster={activeVideo.imageSrc}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="video-native-player"
+                />
+              ) : (
+                <iframe
+                  src={activeVideo.videoUrl}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="video-iframe"
+                />
+              )}
             </div>
 
             <div className="media-modal-footer">

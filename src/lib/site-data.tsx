@@ -21,14 +21,10 @@ export const FACEBOOK_URL = "https://www.facebook.com/prosperworkmusicconcepts";
 export const LINKEDIN_URL =
   "https://www.linkedin.com/company/prosperworkmusicconcepts";
 
-export const heroImage =
-  "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=1800&q=85";
-export const vocalImage =
-  "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=85";
-export const lessonImage =
-  "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=85";
-export const stageImage =
-  "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=85";
+export const heroImage = "/images/hero/piano-desktop.jpg";
+export const vocalImage = "/images/hero/voice-desktop.jpg";
+export const lessonImage = "/images/showcase/client-live-piano-lesson.jpg";
+export const stageImage = "/images/showcase/client-sax-recital-deborah.jpg";
 
 export const navItems = [
   { href: "/", label: "Home" },
@@ -226,15 +222,17 @@ export function getWhatsAppLink(customText?: string) {
 }
 
 export const academyImages = {
-  pianoLesson: "/images/showcase/showcase-piano-lesson.jpg",
-  saxRecital: "/images/showcase/showcase-sax-recital.jpg",
-  vocalCoaching: "/images/showcase/showcase-vocal-coaching.jpg",
+  pianoLesson: "/images/showcase/client-live-piano-lesson.jpg",
+  saxRecital: "/images/showcase/client-sax-recital-deborah.jpg",
+  liveGuitar: "/images/showcase/client-live-guitar-class.jpg",
+  keyboardSession: "/images/showcase/client-live-keyboard-session.jpg",
   drumLesson: "/images/showcase/showcase-drum-lesson.jpg",
   violinStudent: "/images/showcase/showcase-violin-student.jpg",
   guitarStudent: "/images/showcase/showcase-guitar-student.jpg",
   jesusKids: "/images/showcase/showcase-jesus-kids.jpg",
   annualAwards: "/images/showcase/showcase-annual-awards.jpg",
   onlineSession: "/images/showcase/showcase-online-session.jpg",
+  vocalCoaching: "/images/showcase/showcase-vocal-coaching.jpg",
 };
 
 export interface ShowcaseMediaItem {
@@ -248,7 +246,7 @@ export interface ShowcaseMediaItem {
   caption: string;
   imageSrc: string;
   videoDuration?: string;
-  videoUrl?: string; // YouTube / Vimeo or local video embed
+  videoUrl?: string; // local /videos/*.mp4 or embed URL
 }
 
 export const showcaseCategories = [
@@ -263,83 +261,121 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
   {
     id: "media-1",
     type: "video",
-    title: "Sarah’s Classical Piano Recital: Ode to Joy",
+    title: "Deborah Mordi: Saxophone Solo Recital",
     category: "recitals",
     categoryLabel: "Student Recital",
-    instrument: "Piano",
-    performerOrStudent: "Sarah (Age 9, Grade 2 Pathway)",
+    instrument: "Saxophone",
+    performerOrStudent: "Deborah Mordi (Saxophone Student)",
     caption:
-      "Sarah demonstrating steady tempo, clean two-hand balance, and dynamic touch after 4 months of 1-on-1 lessons.",
-    imageSrc: "/images/showcase/video-thumb-piano-recital.jpg",
-    videoDuration: "2:15",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+      "Watch Deborah perform a live alto saxophone solo with warm tone and expressive phrasing developed through 1-on-1 coaching.",
+    imageSrc: "/images/showcase/video-thumb-deborah-recital.jpg",
+    videoDuration: "0:26",
+    videoUrl: "/videos/deborah-sax-recital.mp4",
   },
   {
     id: "media-2",
-    type: "photo",
-    title: "Live 1-on-1 Saxophone Tone & Phrasing Session",
-    category: "lessons",
-    categoryLabel: "Live Lesson",
+    type: "video",
+    title: "Deborah Mordi: Student Journey & Experience",
+    category: "recitals",
+    categoryLabel: "Student Story",
     instrument: "Saxophone",
-    performerOrStudent: "Emmanuel with Instructor David",
+    performerOrStudent: "Deborah Mordi (Student Testimonial)",
     caption:
-      "Focusing on embouchure control, clean lower register articulation, and worship melodic phrasing.",
-    imageSrc: "/images/showcase/showcase-sax-recital.jpg",
+      "Deborah shares how patient, structured instruction and attentive feedback helped her build confidence on the saxophone.",
+    imageSrc: "/images/showcase/video-thumb-deborah-testimonial.jpg",
+    videoDuration: "1:03",
+    videoUrl: "/videos/deborah-mordi-testimonial.mp4",
   },
   {
     id: "media-3",
-    type: "video",
-    title: "Vocal Masterclass: Diaphragmatic Breath & Range",
-    category: "recitals",
-    categoryLabel: "Vocal Masterclass",
-    instrument: "Voice Training",
-    performerOrStudent: "Grace (Adult Vocal Track)",
+    type: "photo",
+    title: "Live 1-on-1 Online Piano & Chord Guidance",
+    category: "lessons",
+    categoryLabel: "Live Lesson",
+    instrument: "Piano & Keys",
+    performerOrStudent: "Online Piano Student with Instructor",
     caption:
-      "Guided vocal warmup, vowel placement, and pitch centering during an online coaching session.",
-    imageSrc: "/images/showcase/video-thumb-vocal-warmup.jpg",
-    videoDuration: "3:40",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+      "Split-screen live interactive session: digital chord charts and keyboard visualization on screen paired with acoustic piano practice at home.",
+    imageSrc: "/images/showcase/client-live-piano-lesson.jpg",
   },
   {
     id: "media-4",
-    type: "photo",
-    title: "Junior Drum Rhythm & Metronome Rudiments",
-    category: "lessons",
-    categoryLabel: "Live Lesson",
-    instrument: "Drums",
-    performerOrStudent: "Joshua (Age 11)",
+    type: "video",
+    title: "Junior Saxophone Solo Performance",
+    category: "recitals",
+    categoryLabel: "Student Recital",
+    instrument: "Saxophone",
+    performerOrStudent: "Junior Saxophone Student",
     caption:
-      "Practicing 4-way limb independence, single paradiddle rudiments, and Afro-gospel pocket groove.",
-    imageSrc: "/images/showcase/showcase-drum-lesson.jpg",
+      "Energetic live playing demonstrating steady embouchure, dynamic control, and accurate note articulation.",
+    imageSrc: "/images/showcase/video-thumb-student-sax-performance.jpg",
+    videoDuration: "0:15",
+    videoUrl: "/videos/student-sax-performance.mp4",
   },
   {
     id: "media-5",
-    type: "photo",
-    title: "Violin Bow Technique & Intonation Practice",
-    category: "lessons",
-    categoryLabel: "Live Lesson",
-    instrument: "Violin",
-    performerOrStudent: "Victoria (Age 8)",
+    type: "video",
+    title: "Saxophone Student Learning Journey & Review",
+    category: "recitals",
+    categoryLabel: "Student Story",
+    instrument: "Saxophone",
+    performerOrStudent: "Saxophone Student Experience",
     caption:
-      "Establishing correct shoulder rest alignment, straight bow stroke, and first fingerboard placements.",
-    imageSrc: "/images/showcase/showcase-violin-student.jpg",
+      "Reflecting on rapid technical progress, encouraging instructor support, and personalized weekly lesson goals.",
+    imageSrc: "/images/showcase/video-thumb-student-sax-story.jpg",
+    videoDuration: "1:00",
+    videoUrl: "/videos/student-sax-story.mp4",
   },
   {
     id: "media-6",
-    type: "video",
-    title: "Jesus Kids Praise & Worship Recital",
+    type: "photo",
+    title: "Live Guitar Theory & Fretboard Class",
+    category: "lessons",
+    categoryLabel: "Live Lesson",
+    instrument: "Guitar",
+    performerOrStudent: "Ethan with Instructor Ezenduka",
+    caption:
+      "Live 1-on-1 guitar session covering fretboard notation, musical manuscript notes, and practical chord hand positions.",
+    imageSrc: "/images/showcase/client-live-guitar-class.jpg",
+  },
+  {
+    id: "media-7",
+    type: "photo",
+    title: "Interactive Keyboard Note-by-Note Masterclass",
+    category: "lessons",
+    categoryLabel: "Live Lesson",
+    instrument: "Keyboard",
+    performerOrStudent: "Keyboard Beginner Pathway",
+    caption:
+      "Step-by-step key identification, note chart reading, and melodic finger technique on Yamaha digital keyboard.",
+    imageSrc: "/images/showcase/client-live-keyboard-session.jpg",
+  },
+  {
+    id: "media-8",
+    type: "photo",
+    title: "Alto Saxophone Tone & Breathing Practice",
+    category: "lessons",
+    categoryLabel: "Live Practice",
+    instrument: "Saxophone",
+    performerOrStudent: "Deborah Mordi",
+    caption:
+      "Building clean lower-register articulation, steady breath support, and disciplined recital preparation at home.",
+    imageSrc: "/images/showcase/client-sax-recital-deborah.jpg",
+  },
+  {
+    id: "media-9",
+    type: "photo",
+    title: "Jesus Kids Praise & Worship Fellowship",
     category: "jesus-kids",
     categoryLabel: "Jesus Kids",
     instrument: "Choir & Keys",
     performerOrStudent: "ProsperWork Children Fellowship",
     caption:
-      "Children reciting scriptures and performing group worship praise songs with accompaniment.",
-    imageSrc: "/images/showcase/video-thumb-kids-praise.jpg",
-    videoDuration: "4:10",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+      "Children reciting scriptures and performing worship praise songs with keyboard accompaniment.",
+    imageSrc: "/images/showcase/showcase-jesus-kids.jpg",
   },
   {
-    id: "media-7",
+    id: "media-10",
     type: "photo",
     title: "Annual Online Showcase & Talent Award Ceremony",
     category: "awards",
@@ -351,19 +387,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     imageSrc: "/images/showcase/showcase-annual-awards.jpg",
   },
   {
-    id: "media-8",
-    type: "photo",
-    title: "Acoustic Guitar Fingerpicking & Chords",
-    category: "lessons",
-    categoryLabel: "Live Lesson",
-    instrument: "Guitar",
-    performerOrStudent: "Daniel (Teen Track)",
-    caption:
-      "Transitioning cleanly between open chords, barre shapes, and fingerstyle worship accompaniments.",
-    imageSrc: "/images/showcase/showcase-guitar-student.jpg",
-  },
-  {
-    id: "media-9",
+    id: "media-11",
     type: "photo",
     title: "Admin Oversight & Seamless Lesson Monitoring",
     category: "lessons",
@@ -371,7 +395,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     instrument: "Quality Assurance",
     performerOrStudent: "ProsperWork Academic Operations",
     caption:
-      "Every lesson is backed by live administrative attendance and curriculum tracking.",
+      "Every lesson is backed by live administrative attendance and curriculum tracking for complete peace of mind.",
     imageSrc: "/images/showcase/showcase-online-session.jpg",
   },
 ];

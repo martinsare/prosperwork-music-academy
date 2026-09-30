@@ -48,3 +48,8 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Raw Large Media Sources (>100MB)
+public/images/*.MP4
+public/images/*.mp4
+public/images/WhatsApp*

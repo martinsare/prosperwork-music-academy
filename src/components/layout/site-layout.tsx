@@ -43,9 +43,13 @@ function Header() {
     <header className="site-header">
       <div className="nav-shell">
         <Link href="/" className="brand" data-testid="link-brand">
-          <span className="brand-mark">
-            <Music2 size={20} />
-          </span>
+          <img
+            src="/images/logo/brand-emblem.png"
+            alt="ProsperWork Music Concepts"
+            className="brand-logo-emblem"
+            width={38}
+            height={44}
+          />
           <span>
             <strong>ProsperWork</strong>
             <small>Music Concepts</small>
@@ -112,9 +116,13 @@ function Footer() {
       <div className="page-wrap footer-grid">
         <div>
           <Link href="/" className="brand footer-brand">
-            <span className="brand-mark">
-              <Music2 size={18} />
-            </span>
+            <img
+              src="/images/logo/brand-emblem.png"
+              alt="ProsperWork Music Concepts"
+              className="brand-logo-emblem footer-emblem"
+              width={38}
+              height={44}
+            />
             <span>
               <strong>ProsperWork</strong>
               <small>Music Concepts</small>
