@@ -207,11 +207,14 @@ export function MusicNotesBackdrop() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // If user tapped on ANY foreground card, modal, header, button, input, form, image, or dialog:
-      // notes sitting behind these elements are obscured and MUST NOT be clickable!
+      // If user clicked/tapped directly on a note particle or its SVG, let the direct handler handle it!
+      if (target.closest(".stream-note-particle")) return;
+
+      // If user tapped inside an interactive control, form, card, modal, or header:
+      // do not burst notes sitting behind them!
       const isForegroundCover = target.closest(
         'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
-          "video, iframe, audio, label, img, pre, code, " +
+          "video, iframe, audio, " +
           ".site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, " +
           ".course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, " +
           ".learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, " +
@@ -240,24 +243,8 @@ export function MusicNotesBackdrop() {
         const noteCenterY = rect.top + rect.height / 2;
         const distance = Math.hypot(clickX - noteCenterX, clickY - noteCenterY);
 
-        // Generous, intuitive hit radius (32px)
-        if (distance <= Math.max(rect.width * 0.9, 32)) {
-          // Double check that the note center is not physically covered by a modal or card
-          const topElAtCenter = document.elementFromPoint(
-            noteCenterX,
-            noteCenterY
-          );
-          if (topElAtCenter) {
-            const isOccluded = topElAtCenter.closest(
-              'button, a, input, select, textarea, [role="button"], [role="dialog"], [role="alertdialog"], ' +
-                ".site-header, .mobile-panel, .cookie-banner, .media-modal-backdrop, .media-modal-container, " +
-                ".course-card, .course-detail-card, .recital-card, .journey-card, .showcase-card, .home-outcome-card, .outcome-card, " +
-                ".learning-path-card, .timeline article, .feature-row, .support-item, .enrollment-band, .jesus-panel, .contact-panel, " +
-                ".faq-aside, .lead-form, .admission-form, .page-hero-media, .showcase-photo-mosaic"
-            );
-            if (isOccluded) return;
-          }
-
+        // Generous, intuitive hit radius (40px)
+        if (distance <= Math.max(rect.width * 0.95, 40)) {
           handleNoteBurst(id);
         }
       });
