@@ -1,13 +1,25 @@
-import { MessageCircle, Play, Trophy } from 'lucide-react';
+import { MessageCircle, Play, Trophy } from "lucide-react";
 
-import { PageHero, SectionIntro } from '@/components/site/page-blocks';
-import { vocalImage } from '@/lib/site-data';
+import { PageHero, SectionIntro } from "@/components/site/page-blocks";
+import { vocalImage } from "@/lib/site-data";
 
 export default function HowItWorksPage() {
   const steps = [
-    ['Book a FREE Trial Assessment', "We evaluate your child's starting point.", MessageCircle],
-    ['Meet Your Expert Instructor', 'Your child meets their dedicated teacher and begins learning immediately in that same session.', Play],
-    ['Begin Your Musical Journey', 'Watch your child grow into a confident musician.', Trophy],
+    [
+      "Book a FREE Trial Assessment",
+      "We evaluate your child's starting point.",
+      MessageCircle,
+    ],
+    [
+      "Meet Your Expert Instructor",
+      "Your child meets their dedicated teacher and begins learning immediately in that same session.",
+      Play,
+    ],
+    [
+      "Begin Your Musical Journey",
+      "Watch your child grow into a confident musician.",
+      Trophy,
+    ],
   ];
 
   return (
@@ -23,7 +35,7 @@ export default function HowItWorksPage() {
         <div className="page-wrap timeline">
           {steps.map(([title, copy, Icon], index) => (
             <article key={title as string}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <Icon size={24} />
               <h2>{title as string}</h2>
               <p>{copy as string}</p>
@@ -41,10 +53,16 @@ export default function HowItWorksPage() {
           />
           <div className="lesson-flow">
             {[
-              ['Warm up', 'Technical prep for the selected course.'],
-              ['Core skill', 'Reading, rhythm, tone, chords, posture, or breath.'],
-              ['Repertoire', 'Songs, pieces, grooves, or exam material.'],
-              ['Assignment', 'Specific practice target before the next lesson.'],
+              ["Warm up", "Technical prep for the selected course."],
+              [
+                "Core skill",
+                "Reading, rhythm, tone, chords, posture, or breath.",
+              ],
+              ["Repertoire", "Songs, pieces, grooves, or exam material."],
+              [
+                "Assignment",
+                "Specific practice target before the next lesson.",
+              ],
             ].map(([title, copy]) => (
               <div key={title}>
                 <h3>{title}</h3>

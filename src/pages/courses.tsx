@@ -1,13 +1,22 @@
-import { useMemo, useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import { useMemo, useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
 
-import { PageHero } from '@/components/site/page-blocks';
-import { courses, getWhatsAppLink, lessonImage } from '@/lib/site-data';
+import { PageHero } from "@/components/site/page-blocks";
+import { courses, getWhatsAppLink, lessonImage } from "@/lib/site-data";
 
 export default function CoursesPage() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const categories = useMemo(() => ['All', ...Array.from(new Set(courses.map((course) => course.category)))], []);
-  const filteredCourses = activeCategory === 'All' ? courses : courses.filter((course) => course.category === activeCategory);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const categories = useMemo(
+    () => [
+      "All",
+      ...Array.from(new Set(courses.map((course) => course.category))),
+    ],
+    []
+  );
+  const filteredCourses =
+    activeCategory === "All"
+      ? courses
+      : courses.filter((course) => course.category === activeCategory);
 
   return (
     <>
@@ -22,7 +31,12 @@ export default function CoursesPage() {
         <div className="page-wrap">
           <div className="filter-bar" aria-label="Course categories">
             {categories.map((category) => (
-              <button key={category} type="button" className={activeCategory === category ? 'active' : ''} onClick={() => setActiveCategory(category)}>
+              <button
+                key={category}
+                type="button"
+                className={activeCategory === category ? "active" : ""}
+                onClick={() => setActiveCategory(category)}
+              >
                 {category}
               </button>
             ))}
@@ -47,7 +61,13 @@ export default function CoursesPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={getWhatsAppLink(`Hello ProsperWork Music Concepts, I would like to ask about ${course.name} lessons.`)} target="_blank" rel="noreferrer">
+                <a
+                  href={getWhatsAppLink(
+                    `Hello ProsperWork Music Concepts, I would like to ask about ${course.name} lessons.`
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Ask about {course.name}
                   <ArrowRight size={16} />
                 </a>

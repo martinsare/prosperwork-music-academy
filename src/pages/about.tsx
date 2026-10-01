@@ -1,7 +1,7 @@
-import { Award, GraduationCap, ShieldCheck } from 'lucide-react';
+import { Award, GraduationCap, ShieldCheck } from "lucide-react";
 
-import { PageHero, SectionIntro } from '@/components/site/page-blocks';
-import { lessonImage } from '@/lib/site-data';
+import { PageHero, SectionIntro } from "@/components/site/page-blocks";
+import { lessonImage } from "@/lib/site-data";
 
 export default function AboutPage() {
   return (
@@ -25,10 +25,26 @@ export default function AboutPage() {
 
           <div className="proof-panel">
             {[
-              ['Instructor preparation', 'Highly trained expert instructors undergo rigorous extra training before being fully enrolled and assigned to students.', GraduationCap],
-              ['Private online lessons', 'Premium 1-on-1 sessions run for 45 minutes to 1 hour with flexible scheduling from home.', ShieldCheck],
-              ['24/7 admin monitoring', 'Reminders, inquiries, professional class delivery, and active support for every lesson.', ShieldCheck],
-              ['MUSON Certification', 'Students can work toward recognized standards, including MUSON Certification (Muson College), ABRSM, and Trinity examinations.', Award],
+              [
+                "Instructor preparation",
+                "Highly trained expert instructors undergo rigorous extra training before being fully enrolled and assigned to students.",
+                GraduationCap,
+              ],
+              [
+                "Private online lessons",
+                "Premium 1-on-1 sessions run for 45 minutes to 1 hour with flexible scheduling from home.",
+                ShieldCheck,
+              ],
+              [
+                "24/7 admin monitoring",
+                "Reminders, inquiries, professional class delivery, and active support for every lesson.",
+                ShieldCheck,
+              ],
+              [
+                "MUSON Certification",
+                "Students can work toward recognized standards, including MUSON Certification (Muson College), ABRSM, and Trinity examinations.",
+                Award,
+              ],
             ].map(([title, copy, Icon]) => (
               <div key={title as string}>
                 <Icon size={22} />
