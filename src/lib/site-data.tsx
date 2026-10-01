@@ -43,7 +43,8 @@ export const courses = [
     name: "Piano & Keyboard",
     category: "Instrument",
     level: "From age 5 & above • All grades",
-    tagline: "Touch, sight-reading, worship voicings, chords, and musical confidence.",
+    tagline:
+      "Touch, sight-reading, worship voicings, chords, and musical confidence.",
     description:
       "Build posture, hand shape, two-hand coordination, reading fluency, and expressive playing across classical, gospel, and contemporary music on acoustic piano and digital keyboard.",
     curriculum: [
