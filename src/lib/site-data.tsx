@@ -217,15 +217,12 @@ export const academyImages = {
   saxRecital: "/images/showcase/client-sax-recital-deborah.jpg",
   liveGuitar: "/images/showcase/client-live-guitar-class.jpg",
   keyboardSession: "/images/showcase/client-live-keyboard-session.jpg",
-  drumLesson: "/images/showcase/showcase-drum-lesson.jpg",
-  violinStudent: "/images/showcase/student-online-violin-lesson.jpg",
-  guitarStudent: "/images/showcase/student-guitar-studio.jpg",
-  pianoClassical: "/images/showcase/student-classical-piano.jpg",
-  jesusKids: "/images/showcase/mother-child-piano-coaching.jpg",
-  toddlerDiscovery: "/images/showcase/toddler-piano-discovery.png",
+  drumLesson: "/images/hero/drums-desktop.jpg",
+  violinStudent: "/images/hero/violin-desktop.jpg",
+  guitarStudent: "/images/showcase/client-live-guitar-class.jpg",
   annualAwards: "/images/showcase/video-thumb-deborah-recital.jpg",
   onlineSession: "/images/showcase/video-thumb-musical-alphabet-lesson.jpg",
-  vocalCoaching: "/images/showcase/showcase-vocal-coaching.jpg",
+  vocalCoaching: "/images/hero/voice-desktop.jpg",
 };
 
 export interface ShowcaseMediaItem {
@@ -246,8 +243,6 @@ export const showcaseCategories = [
   { id: "all", label: "All Media" },
   { id: "recitals", label: "Student Recitals & Videos" },
   { id: "lessons", label: "Live 1-on-1 Lessons" },
-  { id: "awards", label: "Showcase Awards & Exams" },
-  { id: "jesus-kids", label: "Jesus Kids Fellowship" },
 ];
 
 export const showcaseMedia: ShowcaseMediaItem[] = [
@@ -308,18 +303,6 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     videoUrl: "/videos/student-keyboard-practice.mp4",
   },
   {
-    id: "media-14",
-    type: "photo",
-    title: "Interactive Online Violin Lesson",
-    category: "lessons",
-    categoryLabel: "Live Lesson",
-    instrument: "Violin",
-    performerOrStudent: "Junior Violin Student",
-    caption:
-      "Student practicing violin posture and bowing technique with real-time interactive screen feedback from dedicated instructor.",
-    imageSrc: "/images/showcase/student-online-violin-lesson.jpg",
-  },
-  {
     id: "media-3",
     type: "photo",
     title: "Live 1-on-1 Online Piano & Chord Guidance",
@@ -330,18 +313,6 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     caption:
       "Split-screen live interactive session: digital chord charts and keyboard visualization on screen paired with acoustic piano practice at home.",
     imageSrc: "/images/showcase/client-live-piano-lesson.jpg",
-  },
-  {
-    id: "media-15",
-    type: "photo",
-    title: "Early Childhood Piano Mentorship & Ear Training",
-    category: "jesus-kids",
-    categoryLabel: "Jesus Kids & Early Keys",
-    instrument: "Piano & Keyboard",
-    performerOrStudent: "Early Music Discovery",
-    caption:
-      "Nurturing joyful, patient foundational music discovery and spiritual growth with personalized attention for young learners.",
-    imageSrc: "/images/showcase/mother-child-piano-coaching.jpg",
   },
   {
     id: "media-4",
@@ -356,30 +327,6 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     imageSrc: "/images/showcase/video-thumb-student-sax-performance.jpg",
     videoDuration: "0:15",
     videoUrl: "/videos/student-sax-performance.mp4",
-  },
-  {
-    id: "media-16",
-    type: "photo",
-    title: "Acoustic Guitar Studio Repertoire",
-    category: "lessons",
-    categoryLabel: "Studio Practice",
-    instrument: "Acoustic Guitar",
-    performerOrStudent: "Youth Guitar Student",
-    caption:
-      "Building confidence with solo acoustic guitar repertoire, fretboard posture, clean chord switching, and sheet music reading.",
-    imageSrc: "/images/showcase/student-guitar-studio.jpg",
-  },
-  {
-    id: "media-17",
-    type: "photo",
-    title: "Classical Piano Technique & Repertoire",
-    category: "recitals",
-    categoryLabel: "Student Recital",
-    instrument: "Piano & Keyboard",
-    performerOrStudent: "Classical Piano Learner",
-    caption:
-      "Mastering classical repertoire, dynamic touch, and score interpretation on acoustic piano.",
-    imageSrc: "/images/showcase/student-classical-piano.jpg",
   },
   {
     id: "media-5",
@@ -430,53 +377,5 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     caption:
       "Building clean lower-register articulation, steady breath support, and disciplined recital preparation at home.",
     imageSrc: "/images/showcase/client-sax-recital-deborah.jpg",
-  },
-  {
-    id: "media-18",
-    type: "photo",
-    title: "Toddler Early Musical Discovery",
-    category: "jesus-kids",
-    categoryLabel: "Jesus Kids",
-    instrument: "Piano & Keyboard",
-    performerOrStudent: "Early Discovery Pathway",
-    caption:
-      "Sparking early curiosity and love for sound and rhythm from the very first keys.",
-    imageSrc: "/images/showcase/toddler-piano-discovery.png",
-  },
-  {
-    id: "media-9",
-    type: "photo",
-    title: "Jesus Kids Praise & Worship Fellowship",
-    category: "jesus-kids",
-    categoryLabel: "Jesus Kids",
-    instrument: "Choir & Keys",
-    performerOrStudent: "ProsperWork Children Fellowship",
-    caption:
-      "Children reciting scriptures and performing worship praise songs with keyboard accompaniment.",
-    imageSrc: "/images/showcase/showcase-jesus-kids.jpg",
-  },
-  {
-    id: "media-10",
-    type: "photo",
-    title: "Annual Online Showcase & Talent Award Ceremony",
-    category: "awards",
-    categoryLabel: "Awards & Certificates",
-    instrument: "All Instruments",
-    performerOrStudent: "Annual Competition Winners",
-    caption:
-      "Recognizing student diligence with certificates, MUSON preparation commendations, and performance prizes.",
-    imageSrc: academyImages.annualAwards,
-  },
-  {
-    id: "media-11",
-    type: "photo",
-    title: "Admin Oversight & Seamless Lesson Monitoring",
-    category: "lessons",
-    categoryLabel: "Academy Standard",
-    instrument: "Quality Assurance",
-    performerOrStudent: "ProsperWork Academic Operations",
-    caption:
-      "Every lesson is backed by live administrative attendance and curriculum tracking for complete peace of mind.",
-    imageSrc: "/images/showcase/showcase-online-session.jpg",
   },
 ];
