@@ -16,7 +16,7 @@ export default function HowItWorksPage() {
         eyebrow="How it works"
         title="Three simple steps to begin learning."
         copy="Book a FREE trial assessment, meet your expert instructor, and begin your musical journey."
-        image={vocalImage}
+        image="/images/showcase/student-online-violin-lesson.jpg"
       />
 
       <section className="page-section">

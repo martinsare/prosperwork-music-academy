@@ -218,11 +218,13 @@ export const academyImages = {
   liveGuitar: "/images/showcase/client-live-guitar-class.jpg",
   keyboardSession: "/images/showcase/client-live-keyboard-session.jpg",
   drumLesson: "/images/showcase/showcase-drum-lesson.jpg",
-  violinStudent: "/images/showcase/showcase-violin-student.jpg",
-  guitarStudent: "/images/showcase/showcase-guitar-student.jpg",
-  jesusKids: "/images/showcase/showcase-jesus-kids.jpg",
+  violinStudent: "/images/showcase/student-online-violin-lesson.jpg",
+  guitarStudent: "/images/showcase/student-guitar-studio.jpg",
+  pianoClassical: "/images/showcase/student-classical-piano.jpg",
+  jesusKids: "/images/showcase/mother-child-piano-coaching.jpg",
+  toddlerDiscovery: "/images/showcase/toddler-piano-discovery.png",
   annualAwards: "/images/showcase/video-thumb-deborah-recital.jpg",
-  onlineSession: "/images/showcase/showcase-online-session.jpg",
+  onlineSession: "/images/showcase/video-thumb-musical-alphabet-lesson.jpg",
   vocalCoaching: "/images/showcase/showcase-vocal-coaching.jpg",
 };
 
@@ -264,6 +266,20 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     videoUrl: "/videos/deborah-sax-recital.mp4",
   },
   {
+    id: "media-12",
+    type: "video",
+    title: "Live Online Class: Musical Alphabet & Reading Melodies",
+    category: "lessons",
+    categoryLabel: "Live Classroom Video",
+    instrument: "Piano & Music Theory",
+    performerOrStudent: "ProsperWork Online Classroom",
+    caption:
+      "Authentic recorded live online class showing real-time notation teaching, letter identification, and melodic play-along with student guidance.",
+    imageSrc: "/images/showcase/video-thumb-musical-alphabet-lesson.jpg",
+    videoDuration: "1:44",
+    videoUrl: "/videos/online-musical-alphabet-lesson.mp4",
+  },
+  {
     id: "media-2",
     type: "video",
     title: "Deborah Mordi: Student Journey & Experience",
@@ -278,16 +294,54 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     videoUrl: "/videos/deborah-mordi-testimonial.mp4",
   },
   {
+    id: "media-13",
+    type: "video",
+    title: "Student Keyboard Technique & Practice Session",
+    category: "recitals",
+    categoryLabel: "Student Practice Video",
+    instrument: "Piano & Keyboard",
+    performerOrStudent: "ProsperWork Keyboard Student",
+    caption:
+      "Live student practice demonstration playing melodic patterns on electronic keyboard with rhythm, fingering, and tempo control.",
+    imageSrc: "/images/showcase/video-thumb-keyboard-practice.jpg",
+    videoDuration: "0:24",
+    videoUrl: "/videos/student-keyboard-practice.mp4",
+  },
+  {
+    id: "media-14",
+    type: "photo",
+    title: "Interactive Online Violin Lesson",
+    category: "lessons",
+    categoryLabel: "Live Lesson",
+    instrument: "Violin",
+    performerOrStudent: "Junior Violin Student",
+    caption:
+      "Student practicing violin posture and bowing technique with real-time interactive screen feedback from dedicated instructor.",
+    imageSrc: "/images/showcase/student-online-violin-lesson.jpg",
+  },
+  {
     id: "media-3",
     type: "photo",
     title: "Live 1-on-1 Online Piano & Chord Guidance",
     category: "lessons",
     categoryLabel: "Live Lesson",
-    instrument: "Piano & Keys",
+    instrument: "Piano & Keyboard",
     performerOrStudent: "Online Piano Student with Instructor",
     caption:
       "Split-screen live interactive session: digital chord charts and keyboard visualization on screen paired with acoustic piano practice at home.",
     imageSrc: "/images/showcase/client-live-piano-lesson.jpg",
+  },
+  {
+    id: "media-15",
+    type: "photo",
+    title: "Early Childhood Piano Mentorship & Ear Training",
+    category: "jesus-kids",
+    categoryLabel: "Jesus Kids & Early Keys",
+    instrument: "Piano & Keyboard",
+    performerOrStudent: "Early Music Discovery",
+    caption:
+      "Nurturing joyful, patient foundational music discovery and spiritual growth with personalized attention for young learners.",
+    imageSrc: "/images/showcase/mother-child-piano-coaching.jpg",
   },
   {
     id: "media-4",
@@ -302,6 +356,30 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     imageSrc: "/images/showcase/video-thumb-student-sax-performance.jpg",
     videoDuration: "0:15",
     videoUrl: "/videos/student-sax-performance.mp4",
+  },
+  {
+    id: "media-16",
+    type: "photo",
+    title: "Acoustic Guitar Studio Repertoire",
+    category: "lessons",
+    categoryLabel: "Studio Practice",
+    instrument: "Acoustic Guitar",
+    performerOrStudent: "Youth Guitar Student",
+    caption:
+      "Building confidence with solo acoustic guitar repertoire, fretboard posture, clean chord switching, and sheet music reading.",
+    imageSrc: "/images/showcase/student-guitar-studio.jpg",
+  },
+  {
+    id: "media-17",
+    type: "photo",
+    title: "Classical Piano Technique & Repertoire",
+    category: "recitals",
+    categoryLabel: "Student Recital",
+    instrument: "Piano & Keyboard",
+    performerOrStudent: "Classical Piano Learner",
+    caption:
+      "Mastering classical repertoire, dynamic touch, and score interpretation on acoustic piano.",
+    imageSrc: "/images/showcase/student-classical-piano.jpg",
   },
   {
     id: "media-5",
@@ -335,7 +413,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     title: "Interactive Keyboard Note-by-Note Masterclass",
     category: "lessons",
     categoryLabel: "Live Lesson",
-    instrument: "Keyboard",
+    instrument: "Piano & Keyboard",
     performerOrStudent: "Keyboard Beginner Pathway",
     caption:
       "Step-by-step key identification, note chart reading, and melodic finger technique on Yamaha digital keyboard.",
@@ -352,6 +430,18 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     caption:
       "Building clean lower-register articulation, steady breath support, and disciplined recital preparation at home.",
     imageSrc: "/images/showcase/client-sax-recital-deborah.jpg",
+  },
+  {
+    id: "media-18",
+    type: "photo",
+    title: "Toddler Early Musical Discovery",
+    category: "jesus-kids",
+    categoryLabel: "Jesus Kids",
+    instrument: "Piano & Keyboard",
+    performerOrStudent: "Early Discovery Pathway",
+    caption:
+      "Sparking early curiosity and love for sound and rhythm from the very first keys.",
+    imageSrc: "/images/showcase/toddler-piano-discovery.png",
   },
   {
     id: "media-9",
