@@ -32,7 +32,7 @@ export default function TermsPage() {
             <h2>1. Nature of Services</h2>
             <p>
               {SCHOOL_NAME} provides private, one-on-one online music education
-              covering instruments (Piano, Keyboard, Saxophone, Drums, Violin,
+              covering instruments (Piano & Keyboard, Saxophone, Drums, Violin,
               Acoustic Guitar, Bass Guitar), Voice Training, and Music Theory.
               Lessons run between 45 minutes to 1 hour per session and are
               conducted virtually over approved secure video platforms.
