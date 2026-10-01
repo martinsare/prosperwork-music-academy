@@ -45,7 +45,7 @@ function Header() {
       <div className="nav-shell">
         <Link href="/" className="brand" data-testid="link-brand">
           <img
-            src="/images/logo/brand-emblem.png"
+            src="/images/logo/brand-emblem.webp"
             alt="ProsperWork Music Concepts"
             className="brand-logo-emblem"
             width={38}
@@ -118,7 +118,7 @@ function Footer() {
         <div>
           <Link href="/" className="brand footer-brand">
             <img
-              src="/images/logo/brand-emblem.png"
+              src="/images/logo/brand-emblem.webp"
               alt="ProsperWork Music Concepts"
               className="brand-logo-emblem footer-emblem"
               width={38}

@@ -17,7 +17,7 @@ export default function JesusKidsPage() {
         eyebrow="Optional fellowship"
         title="Jesus Kids Fellowship is optional."
         copy="A dedicated, optional department where we share the word of God and pray with interested kids, ensuring they grow not just musically, but spiritually as well."
-        image="/images/showcase/mother-child-piano-coaching.jpg"
+        image="/images/showcase/mother-child-piano-coaching.webp"
       />
 
       <section className="page-section">
@@ -121,7 +121,7 @@ export default function JesusKidsPage() {
               }}
             >
               <img
-                src="/images/showcase/toddler-piano-discovery.png"
+                src="/images/showcase/toddler-piano-discovery.webp"
                 alt="Toddler discovering piano keys"
                 style={{
                   width: "100%",

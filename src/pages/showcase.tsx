@@ -40,7 +40,7 @@ export default function ShowcasePage() {
         eyebrow="Media & Showcases"
         title="Real moments, live lessons, and student recitals."
         copy="Explore how our students grow from their very first notes to confident performances. Watch student recitals and see moments from our 1-on-1 coaching sessions."
-        image="/images/showcase/showcase-piano-lesson.jpg"
+        image="/images/showcase/client-live-piano-lesson.webp"
       />
 
       {/* Academy context for the student media gallery */}

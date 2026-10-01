@@ -24,7 +24,7 @@ export default function CoursesPage() {
         eyebrow="Course catalog"
         title="Music Theory, Voice Training, and Instrument Instruction."
         copy="We offer Music Theory, Voice Training, and comprehensive instrument instruction, including Afro music styles."
-        image="/images/showcase/student-classical-piano.jpg"
+        image="/images/showcase/student-classical-piano.webp"
       />
 
       <section className="page-section">

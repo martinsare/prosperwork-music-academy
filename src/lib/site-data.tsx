@@ -21,10 +21,10 @@ export const FACEBOOK_URL = "https://www.facebook.com/prosperworkmusicconcepts";
 export const LINKEDIN_URL =
   "https://www.linkedin.com/company/prosperwork-music-concepts/";
 
-export const heroImage = "/images/hero/piano-desktop.jpg";
-export const vocalImage = "/images/hero/voice-desktop.jpg";
-export const lessonImage = "/images/showcase/client-live-piano-lesson.jpg";
-export const stageImage = "/images/showcase/client-sax-recital-deborah.jpg";
+export const heroImage = "/images/hero/piano-desktop.webp";
+export const vocalImage = "/images/hero/voice-desktop.webp";
+export const lessonImage = "/images/showcase/client-live-piano-lesson.webp";
+export const stageImage = "/images/showcase/client-sax-recital-deborah.webp";
 
 export const navItems = [
   { href: "/", label: "Home" },
@@ -213,16 +213,16 @@ export function getWhatsAppLink(customText?: string) {
 }
 
 export const academyImages = {
-  pianoLesson: "/images/showcase/client-live-piano-lesson.jpg",
-  saxRecital: "/images/showcase/client-sax-recital-deborah.jpg",
-  liveGuitar: "/images/showcase/client-live-guitar-class.jpg",
-  keyboardSession: "/images/showcase/client-live-keyboard-session.jpg",
-  drumLesson: "/images/hero/drums-desktop.jpg",
-  violinStudent: "/images/hero/violin-desktop.jpg",
-  guitarStudent: "/images/showcase/client-live-guitar-class.jpg",
-  annualAwards: "/images/showcase/video-thumb-deborah-recital.jpg",
-  onlineSession: "/images/showcase/video-thumb-musical-alphabet-lesson.jpg",
-  vocalCoaching: "/images/hero/voice-desktop.jpg",
+  pianoLesson: "/images/showcase/client-live-piano-lesson.webp",
+  saxRecital: "/images/showcase/client-sax-recital-deborah.webp",
+  liveGuitar: "/images/showcase/client-live-guitar-class.webp",
+  keyboardSession: "/images/showcase/client-live-keyboard-session.webp",
+  drumLesson: "/images/hero/drums-desktop.webp",
+  violinStudent: "/images/hero/violin-desktop.webp",
+  guitarStudent: "/images/showcase/client-live-guitar-class.webp",
+  annualAwards: "/images/showcase/video-thumb-deborah-recital.webp",
+  onlineSession: "/images/showcase/video-thumb-musical-alphabet-lesson.webp",
+  vocalCoaching: "/images/hero/voice-desktop.webp",
 };
 
 export interface ShowcaseMediaItem {
@@ -256,7 +256,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Deborah Mordi (Saxophone Student)",
     caption:
       "Watch Deborah perform a live alto saxophone solo with warm tone and expressive phrasing developed through 1-on-1 coaching.",
-    imageSrc: "/images/showcase/video-thumb-deborah-recital.jpg",
+    imageSrc: "/images/showcase/video-thumb-deborah-recital.webp",
     videoDuration: "0:26",
     videoUrl: "/videos/deborah-sax-recital.mp4",
   },
@@ -270,7 +270,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "ProsperWork Online Classroom",
     caption:
       "Authentic recorded live online class showing real-time notation teaching, letter identification, and melodic play-along with student guidance.",
-    imageSrc: "/images/showcase/video-thumb-musical-alphabet-lesson.jpg",
+    imageSrc: "/images/showcase/video-thumb-musical-alphabet-lesson.webp",
     videoDuration: "1:44",
     videoUrl: "/videos/online-musical-alphabet-lesson.mp4",
   },
@@ -284,7 +284,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Deborah Mordi (Student Testimonial)",
     caption:
       "Deborah shares how patient, structured instruction and attentive feedback helped her build confidence on the saxophone.",
-    imageSrc: "/images/showcase/video-thumb-deborah-testimonial.jpg",
+    imageSrc: "/images/showcase/video-thumb-deborah-testimonial.webp",
     videoDuration: "1:03",
     videoUrl: "/videos/deborah-mordi-testimonial.mp4",
   },
@@ -298,7 +298,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "ProsperWork Keyboard Student",
     caption:
       "Live student practice demonstration playing melodic patterns on electronic keyboard with rhythm, fingering, and tempo control.",
-    imageSrc: "/images/showcase/video-thumb-keyboard-practice.jpg",
+    imageSrc: "/images/showcase/video-thumb-keyboard-practice.webp",
     videoDuration: "0:24",
     videoUrl: "/videos/student-keyboard-practice.mp4",
   },
@@ -312,7 +312,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Online Piano Student with Instructor",
     caption:
       "Split-screen live interactive session: digital chord charts and keyboard visualization on screen paired with acoustic piano practice at home.",
-    imageSrc: "/images/showcase/client-live-piano-lesson.jpg",
+    imageSrc: "/images/showcase/client-live-piano-lesson.webp",
   },
   {
     id: "media-4",
@@ -324,7 +324,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Junior Saxophone Student",
     caption:
       "Energetic live playing demonstrating steady embouchure, dynamic control, and accurate note articulation.",
-    imageSrc: "/images/showcase/video-thumb-student-sax-performance.jpg",
+    imageSrc: "/images/showcase/video-thumb-student-sax-performance.webp",
     videoDuration: "0:15",
     videoUrl: "/videos/student-sax-performance.mp4",
   },
@@ -338,7 +338,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Saxophone Student Experience",
     caption:
       "Reflecting on rapid technical progress, encouraging instructor support, and personalized weekly lesson goals.",
-    imageSrc: "/images/showcase/video-thumb-student-sax-story.jpg",
+    imageSrc: "/images/showcase/video-thumb-student-sax-story.webp",
     videoDuration: "1:00",
     videoUrl: "/videos/student-sax-story.mp4",
   },
@@ -352,7 +352,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Ethan with Instructor Ezenduka",
     caption:
       "Live 1-on-1 guitar session covering fretboard notation, musical manuscript notes, and practical chord hand positions.",
-    imageSrc: "/images/showcase/client-live-guitar-class.jpg",
+    imageSrc: "/images/showcase/client-live-guitar-class.webp",
   },
   {
     id: "media-7",
@@ -364,7 +364,7 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Keyboard Beginner Pathway",
     caption:
       "Step-by-step key identification, note chart reading, and melodic finger technique on Yamaha digital keyboard.",
-    imageSrc: "/images/showcase/client-live-keyboard-session.jpg",
+    imageSrc: "/images/showcase/client-live-keyboard-session.webp",
   },
   {
     id: "media-8",
@@ -376,6 +376,6 @@ export const showcaseMedia: ShowcaseMediaItem[] = [
     performerOrStudent: "Deborah Mordi",
     caption:
       "Building clean lower-register articulation, steady breath support, and disciplined recital preparation at home.",
-    imageSrc: "/images/showcase/client-sax-recital-deborah.jpg",
+    imageSrc: "/images/showcase/client-sax-recital-deborah.webp",
   },
 ];
